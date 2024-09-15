@@ -1,0 +1,297 @@
+<!--
+   Charles Bennington
+   CPSC 322-01
+   HW3
+   9/14/2024
+   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Charles Bennington</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+</head>
+<body>
+<!--Top Bar-->
+<header>
+    <h1>
+        <span>C</span><span>h</span><span>a</span><span>r</span><span>l</span><span>e</span><span>s</span>
+        <span>B</span><span>e</span><span>n</span><span>n</span><span>i</span><span>n</span><span>g</span><span>t</span><span>o</span><span>n</span>
+    </h1>
+    <div id="header-right">
+        <nav>
+            <a href="#Career-Summary">
+                <h4>Career Summary</h4>
+            </a>
+            <a href="#Education-and-Qualifications">
+                <h4>Education and Qualifications</h4>
+            </a>
+            <a href="#Interests-and-Hobbies">
+                <h4>Interests and Hobbies</h4>
+            </a>
+        </nav>
+    </div>
+</header>
+<div id="move"></div>
+<script src="animations.js"></script>
+<!--Flexbox layout-->
+<div id="container">
+    <nav >
+        <!--Buffer for the image, beacuse of the header-->
+        <div style="height: 40px"></div>
+        <section>
+            <h4>Student at Gonzaga University</h4>
+            <p class="center"><em>Meet Charles, a highly motivated Computer Science Student</em> with a passion for developing innovative solutions.
+                Skilled in software development, UI Design, and database design, with a proven track record of meeting deadlines, improving efficiency, and saving money.
+            </p>
+            <p>
+                A collaborative team player with a strong commitment to delivering exceptional results and driving business success.
+            </p>
+        </section>
+        <!--Unordered list looks weird, so it's an -->
+        <!--Unordered list that conatains a single HTML table-->
+        <!--Only one unordered list, so it makes sense to do inline.-->
+        <ul style="list-style-type: none;">
+            <!--Fits requirment, but table looks better-->
+            <li>
+                <table>
+                    <tr>
+                        <th>Technical Skills</th>
+                        <th>Soft Skills</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="dropdown">
+                                <h4>JAVA: </h4>
+                                <progress id="file" value="80" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>5 Yrs of JAVA</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <h4>UI Design</h4>
+                                <progress id="file3" value="80" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>Several Classes in UI Deisgn, passed all with A</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="dropdown">
+                                <h4>HTML</h4>
+                                <progress id="file2" value="20" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>1 Yrs of HTML/CSS/.js</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <h4>Web Development</h4>
+                                <progress id="file4" value="80" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>Several Classes in Web Development, passed all with A</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="dropdown">
+                                <h4>C++:</h4>
+                                <progress id="file1" value="50" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>3 Yrs of C++</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <h4>People skills</h4>
+                                <progress id="file5" value="95" max="100"> 32% </progress>
+                                <div class="dropdown-content">
+                                    <p>Placed in multiple leadership positions</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section id="Career-Summary-Div">
+            <!--"hidden" text, which adds a buffer so the header isn't covering the carrier summary-->
+            <!--No need to make a entry in .css file, will just do inline, margin top for avoiding the header-->
+            <h2 style="margin-top: 30px">Hidden Text</h2>
+            <h2 id="Career-Summary" style="margin-top: 30px">Career Summary</h2>
+            <table>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <!--Start of Specific work Expereince-->
+                <tr >
+                    <td colspan="3">
+                        <h3>Automation Research Intern</h3>
+                        <em>Real Frequency, Spokane</em>
+                        <em>January 2024 - August 2024</em>
+                        <p>
+                            My first computer science related internship. I worked at a college counseling firm, working on automating some excel tasks, to make things easier for the business owners.
+                            Over the summer, I developed an app that was able to save my client 379$ per year.
+                        </p>
+                        <p>
+                            <a href="https://github.com/cbennington852/workPlay">Github Repo Link</a>
+                        </p>
+                    </td>
+                </tr>
+                <!--end of specific-->
+                <!--Start of Specific work Expereince-->
+                <tr>
+                    <td colspan="3">
+                        <h3>Event Team Lead</h3>
+                        <em> Issaquah Parks and Recreation, Pickering Barn</em>
+                        <em>June 2022 - Ongoing seasonal
+                        </em>
+                        <p>
+                            I work during the summer and during school breaks. I work on various tasks around the barn.
+                            This is a part time job. I would often work with volunteers, some of whom I became close friends with.
+                            Oftentimes when there was a new volunteer they would pair them with me.
+                        </p>
+                    </td>
+                </tr>
+                <!--Adds a border-bottom, only  have one, so will write inline-->
+                <tr style="border-bottom: solid">
+                    <td colspan="3">
+                        <h3>FRC programming Lead</h3>
+                        <em> FRC Team 2928, Ballard High School</em>
+                        <em>June 2019-2021
+                        </em>
+                        <p>
+                            During high school I was a part of a FRC robotics team, I even lead the team for 2 years.
+                            Our team was able to make it to the world championships in huston in 2019.
+                        </p>
+                    </td>
+                </tr>
+                <!--end of specific-->
+            </table>
+        </section>
+        <section id="Education-and-Qualifications-Div">
+            <h2 id="Education-and-Qualifications">Education and Qualifications</h2>
+            <table id="edu_id">
+                <caption>
+                    <h2 class="normal">Formal Education</h2>
+                </caption>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <!--Start of Specific work Experience-->
+                <tr>
+                    <!--Adds a none bullet point, only  have two, so will write inline-->
+                    <td colspan="3" style="list-style-type: none">
+                        <h3>Gonzaga University</h3>
+                        <p><em>B.S. Computer Science</em></p>
+                        <p><em>Start year: 2022 Graduation Year: 2026</em></p>
+                        <p>
+                            I have enjoyed studying computer science, and I have learned a lot about myself. College has given me the opportunity to learn new skills.
+                            I joined multiple school clubs while in college, and got to lead one of those school clubs.  <strong>GPA - 3.5</strong>
+                        </p>
+                    </td>
+                </tr>
+                <!--end of specific-->
+                <!--Start of Specific -->
+                <tr>
+                    <!--Adds a none bullet point, only  have two, so will write inline-->
+                    <td colspan="3" style="list-style-type: none">
+                        <h3>COMPTIA Security+ </h3>
+                        <p><em>Currently, In progress</em></p>
+                        <p>
+                            During the summer of 2024 and 2025, and a little bit during school I studied for the COMPTIA Security+ exam
+                            This was an interest of my own, and I enjoyed learning about this topic a lot. This certification is not completed, I will
+                            take the test at the end of summer 2025.
+                        </p>
+                    </td>
+                </tr>
+                <!-- end of specific-->
+            </table>
+            <table >
+                <caption>
+                    <h2 class="normal">Qualifications</h2>
+                </caption>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <!--Start of Specific liquefaction -->
+                <tr>
+                    <td>
+                        <p><strong>Strong Inter-personal Skills</strong></p>
+                        <ul>
+                            <li>Farmers Market Event Team Lead</li>
+                            <li>DND Dungeon master</li>
+                            <li>UACC Representitive</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <p><strong>Public Speaking skills</strong></p>
+                        <ul>
+                            <li>GU Hackathon</li>
+                            <li>DND Dungeon master</li>
+                            <li>Various academic presetaions at clubs.</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <p><strong>Time management</strong></p>
+                        <ul>
+                            <li>I wake up at 6am every day.</li>
+                            <li>Very organised</li>
+                            <li>Color codes <em>everything</em></li>
+                        </ul>
+                    </td>
+                </tr>
+                <!-- end of specific-->
+            </table>
+        </section>
+        <div id="Interests-and-Hobbies-Div">
+            <h2 id="Interests-and-Hobbies">Interests and Hobbies</h2>
+            <p>I have many unique Hobbies and skills, many of which I have picked up over the years. </p>
+            <ol>
+                <li>
+                    <h3>Running</h3>
+                    <p>I deeply enjoy running, I will often go running 5 times a week.</p>
+                </li>
+                <li>
+                    <h3>DND (Dungeons and Dragons)</h3>
+                    <p>
+                        I have been playing dungeons and dragons for many years now, many of the friends I make
+                        playing this game I still talk today.
+                    </p>
+                    <a href="https://www.dndbeyond.com/how-to-play-dnd" target="_blank"><img width="100" alt="DND symbol" src="DnD-Symbol.png"></a>
+                </li>
+                <li>
+                    <h3>Spending time with Friends</h3>
+                    <p>
+                        I deeply value time with my friends, and I always make time to
+                        talk with them, no-matter how busy I am.
+                    </p>
+                </li>
+                <li >
+                    <h3>Cooking with friends</h3>
+                    <p>
+                        I love food, and I love friends, I will often cook dishes with them.
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </main>
+</div>
+</body>
+</html>
