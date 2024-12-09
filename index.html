@@ -315,7 +315,7 @@
             getMousePosition(canvas, e);
         });
 
-        const particlesNum = 1000;
+        const particlesNum = 3000;
 
         //find angle
         function findAngleBetween ( x1 , y1 , x2 , y2 )
@@ -335,16 +335,20 @@
 
         // Particle class
         class Particle {
+
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.angle = Math.random() * 2 * Math.PI;
                 this.speed = 0.5;
+                this.buddy = Math.floor(Math.random() * particlesNum);
+
+                this.sensorPos = new createVector(0,0);
             }
 
             update() {
-                let randParticle = Math.floor(Math.random() * (particlesNum/100));
-                this.angle = findAngleBetween(this.x, this.y, particles[randParticle].x, particles[randParticle].y);
+                //let randParticle = Math.floor(Math.random() * (particlesNum/this.buddy));
+                this.angle = findAngleBetween(this.x, this.y, particles[this.buddy].x, particles[this.buddy].y);
 
                 this.x += this.speed * Math.cos(this.angle);
                 this.y += this.speed * Math.sin(this.angle);
@@ -359,7 +363,8 @@
             }
 
             draw() {
-                ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
+
+                ctx.fillStyle = 'rgba('+this.buddy+', 255, 0, 0.5)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, 2, 0, 2 * Math.PI);
                 ctx.fill();
