@@ -344,11 +344,13 @@
                 this.buddy = Math.floor(Math.random() * particlesNum);
 
                 this.sensorPos = new createVector(0,0);
+                this.sensorAngle = 45;
+                this.sensorDist = 50;
             }
 
             update() {
                 //let randParticle = Math.floor(Math.random() * (particlesNum/this.buddy));
-                this.angle = findAngleBetween(this.x, this.y, particles[this.buddy].x, particles[this.buddy].y);
+                //this.angle = findAngleBetween(this.x, this.y, particles[this.buddy].x, particles[this.buddy].y);
 
                 this.x += this.speed * Math.cos(this.angle);
                 this.y += this.speed * Math.sin(this.angle);
