@@ -20,19 +20,6 @@
         <span>C</span><span>h</span><span>a</span><span>r</span><span>l</span><span>e</span><span>s</span>
         <span>B</span><span>e</span><span>n</span><span>n</span><span>i</span><span>n</span><span>g</span><span>t</span><span>o</span><span>n</span>
     </h1>
-    <div id="header-right">
-        <nav>
-            <a href="#Career-Summary">
-                <h4>Career Summary</h4>
-            </a>
-            <a href="#Education-and-Qualifications">
-                <h4>Education and Qualifications</h4>
-            </a>
-            <a href="#Interests-and-Hobbies">
-                <h4>Interests and Hobbies</h4>
-            </a>
-        </nav>
-    </div>
 </header>
 
 
@@ -43,96 +30,32 @@
     <nav >
         <!--Buffer for the image, beacuse of the header-->
         <div style="height: 40px"></div>
-        <section>
-            <h4>Student at Gonzaga University</h4>
-            <p class="center"><em>Meet Charles, a highly motivated Computer Science Student</em> with a passion for developing innovative solutions.
-                Skilled in software development, UI Design, and database design, with a proven track record of meeting deadlines, improving efficiency, and saving money.
-            </p>
-            <p>
-                A collaborative team player with a strong commitment to delivering exceptional results and driving business success.
-            </p>
-        </section>
+
         <!--Unordered list looks weird, so it's an -->
         <!--Unordered list that conatains a single HTML table-->
         <!--Only one unordered list, so it makes sense to do inline.-->
         <ul style="list-style-type: none;">
             <!--Fits requirment, but table looks better-->
             <li>
-                <table>
-                    <tr>
-                        <th>Technical Skills</th>
-                        <th>Soft Skills</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown">
-                                <h4>JAVA: </h4>
-                                <progress id="file" value="80" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>5 Yrs of JAVA</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <h4>UI Design</h4>
-                                <progress id="file3" value="80" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>Several Classes in UI Deisgn, passed all with A</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown">
-                                <h4>HTML</h4>
-                                <progress id="file2" value="20" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>1 Yrs of HTML/CSS/.js</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <h4>Web Development</h4>
-                                <progress id="file4" value="80" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>Several Classes in Web Development, passed all with A</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown">
-                                <h4>C++:</h4>
-                                <progress id="file1" value="50" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>3 Yrs of C++</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <h4>People skills</h4>
-                                <progress id="file5" value="95" max="100"> 32% </progress>
-                                <div class="dropdown-content">
-                                    <p>Placed in multiple leadership positions</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+
             </li>
         </ul>
     </nav>
     <main>
+
+
         <section id="Career-Summary-Div">
             <!--"hidden" text, which adds a buffer so the header isn't covering the carrier summary-->
             <!--No need to make a entry in .css file, will just do inline, margin top for avoiding the header-->
             <h2 style="margin-top: 30px">Hidden Text</h2>
-            <h2 id="Career-Summary" style="margin-top: 30px">Career Summary</h2>
+            <section>
+                <p class="center"><em>Meet Charles, a highly motivated Computer Science Student</em> with a passion for developing innovative solutions.
+                    Skilled in software development, UI Design, and database design, with a proven track record of meeting deadlines, improving efficiency, and saving money.
+                </p>
+                <p>
+                    A collaborative team player with a strong commitment to delivering exceptional results and driving business success.
+                </p>
+            </section>
             <table>
                 <tr>
                     <th></th>
@@ -140,9 +63,37 @@
                     <th></th>
                 </tr>
                 <!--Start of Specific work Expereince-->
+
+                <tr >
+                    <table>
+                        <tr>
+                            <td>
+                                <h2>Research Assistant</h2>
+                                <em>Gonzaga University, Daniel Olivares </em>
+                                <em>January 2024 - August 2024</em>
+                                <p>
+                                    I work one on one with the professor during the school year, we primarily work on research focusing on human learning and teaching.
+                                </p>
+                                <p>
+                                    Students enrolled in introductory computer science courses tend towards individual work
+                                    because of pedagogical practices discouraging collaboration and a focus on individual
+                                    assignments. This can discourage new computer science students and may negatively
+                                    affect persistence in computer science.
+                                </p>
+                                <p>
+                                    We are working to build tools that will foster growth and collaboration between computer science students.
+                                </p>
+                            </td>
+                            <td>
+                                <div id="canvas-container" style="margin: auto; border-color: #eeeeee"></div>
+                                <p>A simulation of a plasmodial slime mold; click to interact</p>
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
                 <tr >
                     <td colspan="3">
-                        <h3>Automation Research Intern</h3>
+                        <h2>Automation Research Intern</h2>
                         <em>Real Frequency, Spokane</em>
                         <em>January 2024 - August 2024</em>
                         <p>
@@ -152,18 +103,6 @@
                         <p>
                             <a href="https://github.com/cbennington852/workPlay">Github Repo Link</a>
                         </p>
-                    </td>
-                </tr>
-                <tr >
-                    <td colspan="3">
-                        <h3>Research Assistant</h3>
-                        <em>Gonzaga University, Daniel Olivares </em>
-                        <em>January 2024 - August 2024</em>
-                        <p>
-                            I work one on one with the professor during the school year, we primarily work on research focusing on human learning and teaching.
-                        </p>
-                        <div id="canvas-container" style="margin: auto; border-bottom-color: #eeeeee"></div>
-                        <p>A simulation of a plasmodial slime mold; click to interact</p>
                     </td>
                 </tr>
                 <!--end of specific-->
@@ -265,10 +204,74 @@
                 <!-- end of specific-->
             </table>
         </section>
-        <div id="Interests-and-Hobbies-Div">
-            <h2 id="Interests-and-Hobbies">Coding Demo</h2>
-
-        </div>
+        <section>
+            <table>
+                <tr>
+                    <th>Technical Skills</th>
+                    <th>Soft Skills</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <h4>JAVA: </h4>
+                            <progress id="file" value="80" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>5 Yrs of JAVA</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <h4>UI Design</h4>
+                            <progress id="file3" value="80" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>Several Classes in UI Deisgn, passed all with A</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <h4>HTML</h4>
+                            <progress id="file2" value="20" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>1 Yrs of HTML/CSS/.js</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <h4>Web Development</h4>
+                            <progress id="file4" value="80" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>Several Classes in Web Development, passed all with A</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <h4>C++:</h4>
+                            <progress id="file1" value="50" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>3 Yrs of C++</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <h4>People skills</h4>
+                            <progress id="file5" value="95" max="100"> 32% </progress>
+                            <div class="dropdown-content">
+                                <p>Placed in multiple leadership positions</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </section>
     </main>
 
 </div>

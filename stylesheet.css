@@ -145,7 +145,6 @@ header {
 /*Citation : https://sketchdeck.com/blog/combining-fonts/*/
 
 header h1 {
-    float: left;
     text-align: center;
     padding: 12px;
     text-decoration: none;
