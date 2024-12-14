@@ -1,7 +1,7 @@
 // Set up canvas
 
- let d; let molds = []; let moldNum = 7000;
- let canvasSize = 900;
+ let d; let molds = []; let moldNum = 5000;
+ let canvasSize = 400;
 let circleX, circleY;
 function setup() {
     canvas = createCanvas(canvasSize, canvasSize);
