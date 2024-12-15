@@ -2,6 +2,7 @@
 
  let d; let molds = []; let moldNum = 5000;
  let canvasSize = 400;
+ let points = [];
 let circleX, circleY;
 function setup() {
     canvas = createCanvas(canvasSize, canvasSize);
@@ -10,12 +11,10 @@ function setup() {
 
     d = pixelDensity();
 
-
     for (let i = 0; i < moldNum; i++) {
 
         molds[i] = new mold((i)%canvasSize,(i)%canvasSize);
     }
-
 
 }
 
