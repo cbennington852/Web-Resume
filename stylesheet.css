@@ -5,6 +5,19 @@ HW3
 9/14/2024
 */
 
+#emailContact {
+    text-decoration: none;
+    color: #ff006a;
+    font-size: 150%;
+    font-weight: bold;
+}
+#githubContact {
+}
+#linkedInContact {
+    text-decoration: none; color: #0e76a8; font-size: 150%; font-weight: bold;
+
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -31,7 +44,7 @@ HW3
 
 /* unvisited link */
 a:link {
-    color: green;
+    color: #ff006a;
 }
 ol {
     list-style-type: lower-roman;
