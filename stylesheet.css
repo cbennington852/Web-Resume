@@ -232,10 +232,7 @@ td h3 {
 
 }
 
- tr:nth-child(even)
-{
-    background-color: dimgray;
-}
+
 
  nav table tr:nth-child(even)
  {
