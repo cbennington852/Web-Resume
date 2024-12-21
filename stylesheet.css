@@ -36,7 +36,7 @@ HW3
     border: #eeeeee;
 }
 #Education-and-Qualifications-Div {
-
+    text-align: center;
 }
 #Career-Summary-Div {
 
@@ -212,7 +212,7 @@ h1 {
 }
 
 main {
-    background-color: black;
+    /*background-color: black;*/
     margin-left: 10px;
     border-radius: 10px;
 }
