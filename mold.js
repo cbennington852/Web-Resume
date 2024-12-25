@@ -1,5 +1,5 @@
 class mold {
-    constructor (startingPosX,startingPosY ) {
+    constructor (startingPosX,startingPosY, canvasSize ) {
         this.x = startingPosX;
         this.y = startingPosY;
         this.r = 0.5;
@@ -75,7 +75,7 @@ class mold {
     display () {
         noStroke();
         fill(this.colorF,this.colorR,this.colorL);
-        ellipse(this.x, this.y, this.r*2, this.r*2);
+        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*2);
 
         // line(this.x, this.y, this.x + this.r*3*this.vx, this.y + this.r*3*this.vy );
         // fill('red');

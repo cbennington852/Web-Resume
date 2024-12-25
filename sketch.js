@@ -24,7 +24,7 @@ function setup() {
     //console.log(spawnPoints);
 
     for (let i = 0; i < moldNum; i++) {
-        molds[i] = new mold((i)%canvasSize,(i)%canvasSize);
+        molds[i] = new mold((i)%canvasSize,(i)%canvasSize, canvasSize);
     }
 
 }
