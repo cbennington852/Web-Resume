@@ -4,7 +4,25 @@ CPSC 322-01
 HW3
 9/14/2024
 */
+button {
+    text-decoration: none;
+    color: 	darkgrey;
+    background-color: black;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+    border: 2px solid darkgrey; /* Add a border on hover */
+    border-radius: 5px;
+}
 
+button:hover {
+    text-decoration: none;
+    color: #006400;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #006400; /* Add a border on hover */
+    border-radius: 5px;
+}
 
 #githubContact {
     text-decoration: none;
