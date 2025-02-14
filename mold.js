@@ -49,7 +49,7 @@ class mold {
 
         this.colorF = (f + 90)%255;
         this.colorR = (r)%255;
-        this.colorL = (l)%255;
+        this.colorL = (l)%255 + 70;
 
         if ((f > l) && (f > r)) {
             this.heading += 0;
@@ -74,7 +74,7 @@ class mold {
 
     display () {
         noStroke();
-        fill(this.colorF,this.colorR,this.colorL);
+        fill(this.colorL,this.colorF,this.colorR);
         ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*2);
 
         // line(this.x, this.y, this.x + this.r*3*this.vx, this.y + this.r*3*this.vy );
