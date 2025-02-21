@@ -1,6 +1,6 @@
 // Set up canvas
 
- let d; let molds = []; let moldNum = 5000;
+ let d; let molds = []; let moldNum = 3000;
  let canvasSize = 400;
  let points = [];
 let circleX, circleY;
