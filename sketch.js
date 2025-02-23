@@ -21,11 +21,23 @@ function setup() {
         sampleFactor: 0.1,
     });
 
-    //console.log(spawnPoints);
+    for (let i = 0; i < moldNum; i++) {
+        molds[i] = new mold(i%canvasSize,i%canvasSize, canvasSize);
+    }
+
+    //spawns them in a circle. 
+    /*
+    const centerY = canvasSize / 2;
+    const centerX = canvasSize / 2;
+    const radius = 120;
 
     for (let i = 0; i < moldNum; i++) {
-        molds[i] = new mold((i)%canvasSize,(i)%canvasSize, canvasSize);
+        const angle = (i / moldNum) * 2 * Math.PI;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        molds[i] = new mold(x,y, canvasSize);
     }
+     */
 
 }
 
