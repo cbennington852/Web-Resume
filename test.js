@@ -23,10 +23,16 @@ function draw() {
     translate(-width / 4, 0, 0);
     rotateZ(frameCount * 0.02);
     rotateX(frameCount * 0.02);
-    specularMaterial(100);
+    specularMaterial('magenta');
+    metalness(1000);
     let k = (mouseX + mouseY) / 50;
     torus(100, 50, 100);
     pop();
+
+
+
+    orbitControl();
+
 
 
 }

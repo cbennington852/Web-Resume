@@ -1,7 +1,7 @@
 // Set up canvas
 
- let d; let molds = []; let moldNum = 3000;
- let canvasSize = 400;
+ let d; let molds = []; let moldNum = 10000;
+ let canvasSize = 700;
  let points = [];
 let circleX, circleY;
 let spawnPoints = [];
@@ -9,6 +9,8 @@ let spawnPoints = [];
 function preload () {
     font = loadFont("fonts/Roboto-Regular.ttf");
 }
+
+let slider;
 
 function setup() {
     canvas = createCanvas(canvasSize, canvasSize);
@@ -20,25 +22,36 @@ function setup() {
     spawnPoints = font.textToPoints("OOO", 0,300, 300, {
         sampleFactor: 0.1,
     });
-
+    /*
     for (let i = 0; i < moldNum; i++) {
-        molds[i] = new mold(i%canvasSize,i%canvasSize, canvasSize, 90);
-    }
+        molds[i] = new mold(i%canvasSize,i%canvasSize, canvasSize);
+    }*/
 
     //spawns them in a circle. 
-    /*
+
     const centerY = canvasSize / 2;
     const centerX = canvasSize / 2;
     const radius = 120;
+    /*
+    slider = createSlider(0, 100, 50, 1);
+    slider.position(width/2, 600);
+    slider.size(80);
+
+      */
+    let moldColor = 90;
+    for (let i = 0; i < moldNum; i++) {
+        const angle = (i / moldNum) * 2 * Math.PI;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        molds[i] = new mold(x,y, canvasSize, moldColor);
+    }
 
     for (let i = 0; i < moldNum; i++) {
         const angle = (i / moldNum) * 2 * Math.PI;
         const x = centerX + radius * Math.cos(angle);
         const y = centerY + radius * Math.sin(angle);
-        molds[i] = new mold(x,y, canvasSize);
+        molds[i] = new mold(x,y, canvasSize, moldColor);
     }
-     */
-
 }
 
 
@@ -49,6 +62,7 @@ function draw() {
     for (let i = 0; i < moldNum; i++) {
         molds[i].display();
         molds[i].update();
+        
     }
 }
 

@@ -1,8 +1,9 @@
 class mold {
-    constructor (startingPosX,startingPosY, canvasSize ) {
+    constructor (startingPosX,startingPosY, canvasSize , moldColor) {
         this.x = startingPosX;
         this.y = startingPosY;
         this.r = 0.5;
+        this.color = moldColor;
 
         this.heading = random(360);
         this.vx = cos(this.heading);
@@ -47,7 +48,7 @@ class mold {
         index = 4*(d * floor(this.lSensorPos.y)) * (d * width) + 4*(d * floor(this.lSensorPos.x));
         l = pixels[index];
 
-        this.colorF = (f + 90)%255;
+        this.colorF = (f + this.color)%255;
         this.colorR = (r)%255;
         this.colorL = (l)%255 + 70;
 
