@@ -101,12 +101,7 @@ function mousePressed() {
     // Check if the mouse is inside the canvas
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         console.log("Mouse clicked at:", mouseX, mouseY);
-        clickType = document.getElementById('checkbox').value;
-        console.log(clickType);
-
-            fill(255, 0, 0);
-            ellipse(mouseX, mouseY, 200, 200); // Draw a red circle where clicked
-
-
+        fill(255, 0, 0);
+        ellipse(mouseX, mouseY, 200, 200); // Draw a red circle where clicked
     }
 }
