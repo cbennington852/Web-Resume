@@ -8,27 +8,31 @@ let spawnPoints = [];
 
 let moldColor = 150;
 let ringDensity = 500;
+let clickType = false;
 
 function preload () {
     font = loadFont("fonts/Roboto-Regular.ttf");
 
     let controls = document.getElementById('moldControls');
     controls.innerHTML = `
-        <button id="reset">reset</button>
-        <div style="border: 2px solid #5f5f5f;">
-            <p>Mold count (warning higher values may result in performance issues)</p>
-            <input type="range" min="1" max="40000" value="10000" class="slider" id="moldNum">
+    <div class="container">
+        <button id='reset' >reset</button>
+        <div  style="margin: 2px; border: 5px solid #4d4d4d;">
+            <p>Mold count (warning: higher values may result in performance issues)</p>
+            <input type="range" min="1" max="40000" value="10000" class="win10-thumb" id="moldNum">
         </div>
-        
-        <div style="border: 2px solid #5f5f5f;">
+    
+        <div style="margin: 2px; border: 5px solid #4d4d4d;">
             <p>Mold color</p>
-            <input type="range" min="1" max="500" value="150" class="slider" id="moldColor">
+            <input type="range" min="1" max="500" value="150" class="win10-thumb" id="moldColor">
         </div>
-        
-        <div style="border: 2px solid #5f5f5f;">
-            <p>ring collection desnsity</p>
-            <input type="range" min="1" max="2000" value="500" class="slider" id="ringDensity">
+    
+        <div  style="margin: 2px; border: 5px solid #4d4d4d;">
+            <p>Ring collection density</p>
+            <input class="win10-thumb" type="range" min="1" max="2000" value="500"  id="ringDensity">
         </div>
+       
+    </div>
     `;
 
     const resetButton = document.getElementById('reset');
@@ -97,7 +101,12 @@ function mousePressed() {
     // Check if the mouse is inside the canvas
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         console.log("Mouse clicked at:", mouseX, mouseY);
-        fill(255, 0, 0);
-        ellipse(mouseX, mouseY, 200, 200); // Draw a red circle where clicked
+        clickType = document.getElementById('checkbox').value;
+        console.log(clickType);
+
+            fill(255, 0, 0);
+            ellipse(mouseX, mouseY, 200, 200); // Draw a red circle where clicked
+
+
     }
 }
