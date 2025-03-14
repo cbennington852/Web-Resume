@@ -14,35 +14,19 @@ function preload () {
     font = loadFont("fonts/Roboto-Regular.ttf");
 
     let controls = document.getElementById('moldControls');
-    controls.innerHTML = `
-    <div class="container">
-        <button id='reset' >reset</button>
-        <div  style="margin: 2px; border: 5px solid #4d4d4d;">
-            <p>Mold count (warning: higher values may result in performance issues)</p>
-            <input type="range" min="1" max="40000" value="10000" class="win10-thumb" id="moldNum">
-        </div>
-    
-        <div style="margin: 2px; border: 5px solid #4d4d4d;">
-            <p>Mold color</p>
-            <input type="range" min="1" max="500" value="150" class="win10-thumb" id="moldColor">
-        </div>
-    
-        <div  style="margin: 2px; border: 5px solid #4d4d4d;">
-            <p>Ring collection density</p>
-            <input class="win10-thumb" type="range" min="1" max="2000" value="500"  id="ringDensity">
-        </div>
-       
-    </div>
-    `;
 
-    const resetButton = document.getElementById('reset');
-    resetButton.onclick = function() {
-        molds = [];
-        moldNum = document.getElementById('moldNum').value;
-        moldColor = document.getElementById('moldColor').value;
-        ringDensity = document.getElementById('ringDensity').value;
-        setup();
-    };
+
+    const elements = document.querySelectorAll('.setting');
+
+    elements.forEach(element => {
+        element.addEventListener('click', function(event) {
+            molds = [];
+            moldNum = document.getElementById('moldNum').value;
+            moldColor = document.getElementById('moldColor').value;
+            ringDensity = document.getElementById('ringDensity').value;
+            setup();
+        });
+    });
 }
 
 let slider;

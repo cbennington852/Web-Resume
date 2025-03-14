@@ -85,6 +85,18 @@
         }
     }
 
+    .setting {
+        width: 70%;
+    }
+
+    .settingsBox {
+        margin: 2px;
+        background-color: #0a0a0a;
+        border-radius: 5px;
+    }
+
+    
+
 </style>
 <body>
 
@@ -134,7 +146,24 @@
             </div>
             <div class="col">
                 <div id="moldControls">
+                    <div class="container">
 
+                        <div class="settingsBox" >
+                            <p>Mold count (warning: higher values may result in performance issues)</p>
+                            <input type="range" min="1" max="20000" value="10000" class="setting" id="moldNum">
+                        </div>
+
+                        <div class="settingsBox" >
+                            <p>Mold color</p>
+                            <input type="range" min="1" max="500" value="150" class="setting" id="moldColor">
+                        </div>
+
+                        <div class="settingsBox" >
+                            <p>Ring collection density</p>
+                            <input class="setting" type="range" min="1" max="2000" value="500"  id="ringDensity">
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
