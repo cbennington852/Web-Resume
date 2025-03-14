@@ -39,6 +39,13 @@ function draw() {
     model(shape, 100);
     pop();
 
+    push();
+    translate(-width / 4, 0, 0);
+    rotateZ(frameCount * 0.02);
+    rotateX(frameCount * 0.02);
+    torus(100,10,100)
+    pop();
+
 
 
 
