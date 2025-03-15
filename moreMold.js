@@ -53,8 +53,10 @@ class mold {
         //or get distance from center
         let xCenter = width / 2;
         let yCenter = height / 2;
+        //distance from another mold.
         this.colorF = (f + this.color)%255;
-        this.colorR = 60;
+        this.colorR = (this.color)%255;
+        //distance from center
         this.colorL = (getDistance(this.x,this.y, xCenter, yCenter) % this.ringDensity);
 
         if ((f > l) && (f > r)) {
