@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actuarial News</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #003366;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 3;
+        }
+
+        /* Headline Section */
+        .headline {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .headline img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .headline h1 {
+            font-size: 28px;
+        }
+
+        /* Featured Articles Grid */
+        .featured-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .article {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .article h3 {
+            font-size: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .inner img
+        {
+            width: 75px;
+        }
+        /*COOL ANIMATION */
+        .tag-list {
+            width: 50rem;
+            max-width: 90vw;
+            display: flex;
+            flex-shrink: 0;
+            flex-direction: column;
+            gap: 1rem 0;
+            position: relative;
+            padding: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .loop-slider {
+            .inner {
+                display: flex;
+                width: fit-content;
+                animation-name: loop;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                animation-direction: var(--direction);
+                animation-duration: var(--duration);
+            }
+        }
+
+        .tag img {
+            border-radius: 0%;
+        }
+
+        .inner img
+        {
+            width: 50px;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 0 0.2rem;
+            color: black;
+            font-size: 0.9rem;
+            background-color: white;
+            border-radius: 0.4rem;
+            padding: 0.7rem 1rem;
+            margin-right: 1rem; /* Must used margin-right instead of gap for the loop to be smooth*/
+            box-shadow:
+                    0 0.1rem 0.2rem rgb(0 0 0 / 20%),
+                    0 0.1rem 0.5rem rgb(0 0 0 / 30%),
+                    0 0.2rem 1.5rem rgb(0 0 0 / 40%);
+
+            span {
+                font-size: 1.2rem;
+                color: #64748b;
+            }
+        }
+
+        .fade {
+            pointer-events: none;
+            background: linear-gradient(90deg, #f4f4f4, transparent 30%, transparent 70%, #f4f4f4);
+            position: absolute;
+            inset: 0;
+        }
+
+        @keyframes loop {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .article:hover {
+            scale: 102%;
+            animation-name: bigger;
+            animation-duration: 1s;
+        }
+
+        @keyframes bigger {
+            0% {
+                scale: 100%;
+            }
+            50% {
+                scale: 101%;
+            }
+            100% {
+                scale: 102%;
+            }
+        }
+        .headline img{
+            max-width: 900px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Analytics PNW</h2>
+</div>
+
+<div class="container">
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Headline Section -->
+        <div class="headline">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hurricane_katrina_damage_gulfport_mississippi.jpg/1200px-Hurricane_katrina_damage_gulfport_mississippi.jpg" alt="Main Headline">
+            <h1>Understanding Emerging Actuarial Risks in 2025</h1>
+            <p>The actuarial landscape is shifting with new risks in climate, finance, and insurance...</p>
+        </div>
+        <section>
+            <div class="tag-list">
+                <div class="loop-slider" style="--duration:29260ms; --direction:normal;">
+                    <div class="inner">
+                        <div class="tag"><img src="apple-icon.png" alt="Apple ICON"><span>#</span> Apple</div>
+                        <div class="tag"><img src="tesla-icon.png" alt="Tesla ICON"><span>#</span> Tesla</div>
+                        <div style="color: green" class="tag"><img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png" alt="Amazon ICON"><span>&uarr;</span> $288 (18.8%)</div>
+                        <div class="tag"><img src="https://cdn-icons-png.flaticon.com/512/720/720255.png" alt="Google ICON"><span>#</span> Google</div>
+                        <div class="tag"><img src="microsoft-icon.png" alt="Microsoft ICON"><span>#</span> Microsoft</div>
+                        <div class="tag"><img src="facebook-icon.png" alt="Facebook ICON"><span>#</span> Facebook</div>
+                        <!--DUPLICATED-->
+                        <div class="tag"><img src="apple-icon.png" alt="Apple ICON"><span>#</span> Apple</div>
+                        <div class="tag"><img src="tesla-icon.png" alt="Tesla ICON"><span>#</span> Tesla</div>
+                        <div class="tag"><img src="amazon-icon.png" alt="Amazon ICON"><span>#</span> Amazon</div>
+                        <div class="tag"><img src="google-icon.png" alt="Google ICON"><span>#</span> Google</div>
+                        <div class="tag"><img src="microsoft-icon.png" alt="Microsoft ICON"><span>#</span> Microsoft</div>
+                        <div class="tag"><img src="facebook-icon.png" alt="Facebook ICON"><span>#</span> Facebook</div>
+                    </div>
+                </div>
+                <div class="loop-slider" style="--duration:29260ms; --direction:reverse;">
+                    <div class="inner">
+                        <div class="tag"><img src="apple-icon.png" alt="Apple ICON"><span>#</span> Apple</div>
+                        <div class="tag"><img src="tesla-icon.png" alt="Tesla ICON"><span>#</span> Tesla</div>
+                        <div class="tag"><img src="amazon-icon.png" alt="Amazon ICON"><span>#</span> Amazon</div>
+                        <div class="tag"><img src="google-icon.png" alt="Google ICON"><span>#</span> Google</div>
+                        <div class="tag"><img src="microsoft-icon.png" alt="Microsoft ICON"><span>#</span> Microsoft</div>
+                        <div class="tag"><img src="facebook-icon.png" alt="Facebook ICON"><span>#</span> Facebook</div>
+
+                        <!-- duplicated content -->
+                        <div class="tag"><img src="apple-icon.png" alt="Apple ICON"><span>#</span> Apple</div>
+                        <div class="tag"><img src="tesla-icon.png" alt="Tesla ICON"><span>#</span> Tesla</div>
+                        <div class="tag"><img src="amazon-icon.png" alt="Amazon ICON"><span>#</span> Amazon</div>
+                        <div class="tag"><img src="google-icon.png" alt="Google ICON"><span>#</span> Google</div>
+                        <div class="tag"><img src="microsoft-icon.png" alt="Microsoft ICON"><span>#</span> Microsoft</div>
+                        <div class="tag"><img src="facebook-icon.png" alt="Facebook ICON"><span>#</span> Facebook</div>
+                    </div>
+                </div>
+                <div class="fade"></div>
+            </div>
+        </section>
+        <!-- Featured Articles -->
+        <div class="featured-articles">
+            <div class="article">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Norwich_Market_-_geograph.org.uk_-_2224675.jpg/495px-Norwich_Market_-_geograph.org.uk_-_2224675.jpg" alt="Article 1">
+                <h3>Predictive Modeling in Insurance</h3>
+                <p>How actuaries use data science to refine risk analysis.</p>
+            </div>
+
+            <div class="article">
+                <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" alt="Business Professionals Discussing Data Charts">
+                <h3>Longevity Risk & Pensions</h3>
+                <p>Examining the financial impact of increasing life expectancy.</p>
+            </div>
+
+            <div class="article">
+                <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" alt="Business Professionals Discussing Data Charts">
+                <h3>Cybersecurity & Actuarial Science</h3>
+                <p>New methodologies to assess cyber risk and fraud.</p>
+            </div>
+
+            <div class="article">
+                <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" alt="Business Professionals Discussing Data Charts">
+                <h3>Climate Change & Insurance</h3>
+                <p>Analyzing climate risk for the future of insurance policies.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Trending Topics</h2>
+        <ul>
+            <li>📊 AI in Actuarial Science</li>
+            <li>💰 The Future of Retirement Plans</li>
+            <li>📈 Market Volatility & Risk</li>
+            <li>🌍 ESG Investing & Actuaries</li>
+            <li>🔐 Data Privacy & Actuarial Ethics</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    &copy; 2025 Actuarial News | All Rights Reserved
+</div>
+
+</body>
+</html>
