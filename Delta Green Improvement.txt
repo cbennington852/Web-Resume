@@ -1,0 +1,28 @@
+DELTA GREEN CLASSES:
+These classes are intended to boost the survival rate of your characters. 
+
+* Gunslinger
+	- 1 (Quick-draw): 		Drawing a gun no-longer costs an action
+	- 2 (Stat - buff)			+10%(2 pts) to any base stat. Example STR, CON, DEX...
+	- 3 (Trained-shooter):	+ 5% to aimed bonus (Now +25%)
+	- 4 (Duck and Cover)		+ 10% to the bonus from cover
+	- 5 (Burst shot):			Temporarily convert a single shot to a burst fire. Once per combat
+* The Prepper
+	- 1 (Tinker)			Artillery, Demolitions, and Heavy Weapons rolls can be replaced with INT rolls
+	- 2 (Stat - buff)			+10%(2 pts) to any base stat. Example STR, CON, DEX...
+	- 3 (Inside buyers)		Weapons purchases are processed at On level cheaper. Ex: Unusual -> Standard
+	- 4 (Illicit Purchase)		restricted weapons are no-longer restricted and can be purchased on the black market
+	- 5 (Custom Job)		Creation of a custom weapon, Unusual Level or higher
+* Survivalist
+	- 1 (Woodsman):		survival and navigate can be substituted with INT rolls
+	- 2 (Menace):			Unarmed damage is 1d6 (previously 1d4)
+	- 3 (Stat - buff)			+10%(2 pts) to any base stat. Example STR, CON, DEX...
+	- 4 (Thug it out):		Re-roll a non-critical constitution roll.... once a session
+	- 5 (Absolute-Unit):		Once per session, when taking damage greater than a d4 reduce that damage to a d4
+* Lucky Dog
+	- 1 (Car):				+30% to drive will attempting to ram someone with a vehicle. 
+	- 2 (Lucky-Mother-F*ckr)	+10% to luck rolls.
+	- 3 (Perfect shot)		Any roll below a 5 is critical success. 
+	- 4 (Stat - buff)			+10%(2 pts) to any base stat. Example STR, CON, DEX...
+	- 5 (Grazed me)			Downgrade a critical failure to a normal failure. once a session 
+	
