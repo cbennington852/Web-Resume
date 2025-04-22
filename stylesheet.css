@@ -65,6 +65,36 @@ button:hover {
 
 }
 
+#Nav-IFrame {
+    border: none;
+    overflow-y: hidden;
+    scrolling: "no";
+    width: 100%;
+    align-self: center;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    /* Set the height of the header to 100% of the viewport height */
+    top: 0;
+    max-height: 100px;
+}
+
+#projects {
+    text-decoration: none;
+    color: #4caf50;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+#projects:hover {
+    text-decoration: none;
+    color: #4caf50;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #4caf50; /* Add a border on hover */
+
+}
+
 
 #linkedInContact {
     text-decoration: none;

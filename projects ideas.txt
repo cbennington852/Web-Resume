@@ -1,0 +1,6 @@
+Projects Page Brainstorming
+	* MyPL compiler
+	* More Mold
+	* Poster Confrence AI
+	* Home lab? 
+	* CURCI poster
