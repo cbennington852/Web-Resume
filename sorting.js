@@ -36,11 +36,12 @@ function draw() {
     if (!(locX < 1 || locY > (rows-1) || locY < 1 || locX > (cols-1))){
         c[locX][locY] = color(random(256), random(256), random(256));
         c[locX+1][locY] = color(random(256), random(256), random(256));
-        c[locX+1][locY+1] = color(random(256), random(256), random(256));
         c[locX][locY+1] = color(random(256), random(256), random(256));
+        c[locX+1][locY+1] = color(random(256), random(256), random(256));
         c[locX-1][locY-1] = color(random(256), random(256), random(256));
         c[locX][locY-1] = color(random(256), random(256), random(256));
         c[locX-1][locY] = color(random(256), random(256), random(256));
+        c[locX-1][locY+1] = color(random(256), random(256), random(256));
 
     }
 }
