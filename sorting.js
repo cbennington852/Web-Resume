@@ -3,7 +3,13 @@ let size = 15;
 let c = [];
 
 function setup() {
-    createCanvas(800, 500);
+    if (getDeviceType() === 'mobile') {
+        createCanvas(600, 800);
+    }
+    else {
+        createCanvas(800, 500);
+    }
+
     cols = width/size;
     rows = height/size;
     for (let i=0; i<cols; i++){
@@ -33,7 +39,7 @@ function draw() {
     let locY = floor(mouseY / size);
     console.log(locX, locY);
     console.log(typeof locY, typeof locX);
-    if (!(locX < 1 || locY > (rows-1) || locY < 1 || locX > (cols-1))){
+    if (!(locX < 1 || locY > (rows-1) || locY < 1 || locX > (cols-2))){
         c[locX][locY] = color(random(256), random(256), random(256));
         c[locX+1][locY] = color(random(256), random(256), random(256));
         c[locX][locY+1] = color(random(256), random(256), random(256));
@@ -48,6 +54,20 @@ function draw() {
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getDeviceType() {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (/(tablet|ipad)/i.test(userAgent)) {
+        return "tablet";
+    } else if (
+        /(android|iphone|ipod|blackberry|windows phone)/i.test(userAgent)
+    ) {
+        return "mobile";
+    } else {
+        return "desktop";
+    }
 }
 
 function bubbleSortPass(arr) {
