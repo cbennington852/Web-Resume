@@ -39,6 +39,8 @@ function draw() {
         c[locX+1][locY+1] = color(random(256), random(256), random(256));
         c[locX][locY+1] = color(random(256), random(256), random(256));
         c[locX-1][locY-1] = color(random(256), random(256), random(256));
+        c[locX][locY-1] = color(random(256), random(256), random(256));
+        c[locX-1][locY] = color(random(256), random(256), random(256));
 
     }
 }
