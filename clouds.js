@@ -44,7 +44,10 @@ function dotGrid() {
             let noiseValue = noise((x + offset + attribute) * xScale,  (y + offset + attribute) * yScale);
             //calculate the color?
             let c;
-
+            
+            if (noiseValue > 0.9) {
+                c = color(255*noiseValue, 100*noiseValue, 255*random());
+            }
             if (noiseValue > 0.7) {
                 c = color(255*noiseValue, 100*noiseValue, 60*random());
             }
