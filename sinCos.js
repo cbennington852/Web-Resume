@@ -2,6 +2,23 @@ let circleX = 200;
         let circleY = 150;
         let circleRadius = 75;
 
+        function checkValues (t) {
+            let sinX = map(t, 0, 360, graphX, graphX + graphPeriod);
+            let sinY = graphY - graphAmplitude * sin(t + cosPhase);
+            let cosX = map(t, 0, 360, graphX, graphX + graphPeriod);
+            let cosY = graphY - graphAmplitude * cos(t + cosPhase);
+            if (cosX != sinX) {
+                return false;
+            }
+            else if (sinY != cosY) {
+                return false;
+            }
+            else {
+                return true;
+            }
+         }
+
+         
         let graphX = 50;
         let graphY = 300;
         let graphAmplitude = 50;
@@ -82,25 +99,25 @@ let circleX = 200;
         text('sin', graphX + graphPeriod + graphX / 2, graphY);
 
         // Draw cosine curve
-
+        let cosPhase = 10;
         noFill();
         stroke('orange');
         beginShape();
         for (let t = 0; t <= 360; t++) {
             let x = map(t, 0, 360, graphX, graphX + graphPeriod);
-            let y = graphY - graphAmplitude * cos(t);
+            let y = graphY - graphAmplitude * cos(t + cosPhase);
             vertex(x, y);
         }
         endShape();
 
         // Draw sine curve
-
+        let sinPhase = 10;
         noFill();
         stroke('red');
         beginShape();
         for (let t = 0; t <= 360; t++) {
             let x = map(t, 0, 360, graphX, graphX + graphPeriod);
-            let y = graphY - graphAmplitude * sin(t);
+            let y = graphY - graphAmplitude * sin(t + cosPhase);
             vertex(x, y);
         }
         endShape();
@@ -123,4 +140,9 @@ let circleX = 200;
 
         fill('red');
         circle(lineX, redY, 10);
+
+        console.log(checkValues(42));
         }
+        
+
+   

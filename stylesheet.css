@@ -214,8 +214,12 @@ header {
     /* Set the height of the header to 100% of the viewport height */
     top: 0;
     left: 0;
-    width: 90vw;
+    width: 100vw;
     z-index: 1; /* set higher z-index value */
+}
+
+#top-href {
+    text-decoration: none;
 }
 
 /* EXTRA CREDIT custom font */
@@ -297,12 +301,6 @@ h1 span:hover {
     text-size-adjust: 110%;
 }
 
-td h3 {
-
-    text-decoration-style: solid;
-    text-decoration-color: darkorange;
-
-}
 
 
 
@@ -351,7 +349,7 @@ p{
 
 /*COOL ANIMATION */
 .tag-list {
-    width: 50rem;
+    width: 70rem;
     max-width: 90vw;
     display: flex;
     flex-shrink: 0;
