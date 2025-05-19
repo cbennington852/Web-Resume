@@ -36,6 +36,7 @@
         a {
             color: #e60012;
             text-decoration: none;
+            
         }
 
         a:hover {
@@ -119,6 +120,53 @@
                 word-break: break-word;
             }
         }
+
+        details {
+            border: 1px solid #e52207; /* CIA Red */
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: black;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        summary {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: black; /* CIA Red */
+            color: white;
+            border-bottom: 1px solid #e52207;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+        details details {
+            font-size: 80%;
+            margin-left: 20px;
+        }
+
+        summary:hover {
+            background-color: #d83933; /* Darker Red */
+        }
+
+        ul {
+            list-style: none;
+            padding: 16px;
+            margin: 0;
+        }
+
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .level {
+            font-weight: bold;
+            color: #e52207; /* CIA Red */
+        }
+
+        p {
+            display: inline;
+        }
     </style>
     <script defer src="clouds-thin.js"></script>
 <body>
@@ -140,9 +188,73 @@ thing they touch.</p>
 </section>
 
 <section>
-    <p><a href="https://drive.google.com/file/d/1W9C5KGsTEMV-eJ3NJrSMtyKMdkrzk6hQ/view?usp=sharing">Rule Book</a></p>
-    <p><a href="DeltaGreenClasses.html">Classes Info</a></p>
-    <p><a href="https://www.theredactedfiles.com/?page_id=2607">Pregen Characters</a></p>
+    <details>
+        <summary>
+            Rules and Character Sheets 
+        </summary>
+        <ul>
+            <li>
+                 <p><a href="https://drive.google.com/file/d/1W9C5KGsTEMV-eJ3NJrSMtyKMdkrzk6hQ/view?usp=sharing">Rule Book</a></p>
+
+            </li>
+            <li>
+             <p><a href="https://www.theredactedfiles.com/?page_id=2607">Pregen Characters</a></p>
+            </li>
+        </ul>
+       
+    </details>
+    
+
+    <details>
+        <summary>
+        Classes and Upgrades
+        </summary>
+        <details>
+        <summary><p>Gunslinger</p></summary>
+            <ul>
+                <li><span class="level">1 (Quick-draw):</span> Drawing a gun no longer costs an action</li>
+                <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
+                <li><span class="level">3 (Trained-shooter):</span> +5% to aimed bonus (Now +25%)</li>
+                <li><span class="level">4 (Duck and Cover):</span> +10% to the bonus from cover</li>
+                <li><span class="level">5 (Burst shot):</span> Temporarily convert a single shot to a burst fire. Once per combat</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary><p>The Prepper</p></summary>
+            <ul>
+                <li><span class="level">1 (Tinker):</span> Artillery, Demolitions, and Heavy Weapons rolls can be replaced with INT rolls</li>
+                <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
+                <li><span class="level">3 (Inside buyers):</span> Weapons purchases are processed at one level cheaper. Ex: Unusual → Standard</li>
+                <li><span class="level">4 (Illicit Purchase):</span> Restricted weapons are no longer restricted and can be purchased on the black market</li>
+                <li><span class="level">5 (Custom Job):</span> Creation of a custom weapon, Unusual Level or higher</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary><p>Survivalist</p></summary>
+            <ul>
+                <li><span class="level">1 (Woodsman):</span> Survival and Navigate can be substituted with INT rolls</li>
+                <li><span class="level">2 (Menace):</span> Unarmed damage is 1d6 (previously 1d4)</li>
+                <li><span class="level">3 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
+                <li><span class="level">4 (Thug it out):</span> Re-roll a non-critical Constitution roll... once a session</li>
+                <li><span class="level">5 (Absolute-Unit):</span> Once per session, when taking damage greater than a d4, reduce that damage to a d4</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary><p>Lucky Dog</p></summary>
+            <ul>
+                <li><span class="level">1 (Car):</span> +30% to Drive while attempting to ram someone with a vehicle</li>
+                <li><span class="level">2 (Lucky-Mother-F*ckr):</span> +10% to Luck rolls</li>
+                <li><span class="level">3 (Perfect shot):</span> Any roll below a 5 is a critical success</li>
+                <li><span class="level">4 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
+                <li><span class="level">5 (Grazed me):</span> Downgrade a critical failure to a normal failure. Once a session</li>
+            </ul>
+        </details>
+
+            
+    </details>
     
     <details>
         <summary>
@@ -235,7 +347,7 @@ thing they touch.</p>
             <td>Agents are called to investigate reports of vampires???!?!</td>
             <td>Severe structural damage. Government required to step in and control situation. Several civilian deaths. </td>
             <td>4</td>
-            <td style="background-color: var(--failure)">Post Critical</td>
+            <td style="background-color: var(--failure)">Critical Failure</td>
         </tr>
         <tr>
             <td>Green Samurai Jesus Incident</td>
@@ -256,7 +368,7 @@ thing they touch.</p>
             <td>Agents investigate rumors of a strange humming statue. </td>
             <td>Multiple structures destroyed, 150 civilians affected. Anomaly uncontained.</td>
             <td>150</td>
-            <td style="background-color: var(--failure)">Post Critical</td>
+            <td style="background-color: var(--failure)">Critical Failure</td>
         </tr>
         <tr>
             <td>Photograph Incident</td>
