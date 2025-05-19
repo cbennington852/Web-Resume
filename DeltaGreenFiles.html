@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Delta Green Classes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
-<style>
+ <style>
         body {
             font-family: 'GT America', sans-serif;
             background-color: #000;
@@ -26,7 +28,7 @@
             color: #e60012;
         }
 
-        main {
+        main, section {
             padding: 20px;
             line-height: 1.6;
         }
@@ -40,8 +42,8 @@
             text-decoration: underline;
         }
 
-        table {
-            width: 100%;
+         table {
+              width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -74,9 +76,50 @@
             padding: 10px;
             font-size: 0.9em;
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            th, td {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+        }
+
+        
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            th, td {
+                font-size: 0.5em;
+            }
+
+            a {
+                word-break: break-word;
+            }
+        }
     </style>
+    <script defer src="clouds-thin.js"></script>
 <body>
-<h1>Delta Green Campaign Info</h1>
+<section>
+    <h1>Delta Green Campaign Info</h1>
+    <div style="float: left; " id="canvas-roseCanvas"></div>
+</section>
 <section>
     <p>Delta Green is a covert group inside the United States
 federal government. Its mission is to investigate,
@@ -101,16 +144,18 @@ thing they touch.</p>
     <caption>Mission Reports</caption>
     <thead>
         <tr>
-            <th>Mision Name</th>
+            <th>Mission Name</th>
             <th>Description</th>
             <th>Summary</th>
-            <th>Causualties</th>
+            <th>Casualties</th>
             <th>Result</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>First things Last</td>
+            <td>
+                First things Last
+            </td>
             <td>
                 Clyde Baughman was an active Delta Green agent from 1967 to 1970, and an
                 infrequent “Friendly” during the late Nineties. Four days ago he died in his apartment
@@ -124,7 +169,7 @@ thing they touch.</p>
             <td>
 
             </td>
-            <td>
+            <td style="background-color: ">
 
             </td>
         </tr>

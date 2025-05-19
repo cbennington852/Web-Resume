@@ -1,8 +1,11 @@
 let shape;
 let img;
+let roseCanvas
 
 function setup() {
-    createCanvas(710, 400, WEBGL);
+    
+    roseCanvas = createCanvas(200, 200, WEBGL);;
+    roseCanvas.parent("canvas-roseCanvas"); // Attach to the div
 
 }
 
@@ -20,25 +23,16 @@ function draw() {
     // directional light is red
     directionalLight(255, 0, 0, 0.25, 0.25, 0);
      //point light is blue
-    pointLight(0, 0, 255, locX, locY, 250);
+    pointLight(0, 0, 0, locX, locY, 250);
 
     push();
     translate(-width / 4, 0, 0);
     rotateZ(frameCount * 0.02);
     rotateX(frameCount * 0.02);
-    torus(100,10,100)
+     box(70, 70, 70);
     pop();
 
-    push();
-    translate(-75, 100, 0);
-
-    // Show black stroke to help visualize movement
-    stroke(50);
-    sphere(50);
-    pop();
 
     orbitControl();
-
-
 
 }
