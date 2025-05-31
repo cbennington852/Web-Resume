@@ -3,19 +3,24 @@ let sourceImage;
 // Tiles extracted from the source image
 let tiles;
 // Number of cells along one dimension of the grid
-let DIM = 40;
+let DIM = 50;
 // Maximum depth for recursive checking of cells
 let maxDepth = 5;
 // Grid of cells for the Wave Function Collapse algorithm
 let grid = [];
 let thangs = []; 
+let molds = [];
+let d;
 
 function preload() {
   sourceImage = loadImage("images/city_green.png");
 }
 
+let canvasX = 500;
+let canvasY = 500;
+let canvasSize = canvasY;
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(canvasX, canvasY);
 
   // Extract tiles and calculate their adjacencies
   let w = width / DIM;
@@ -37,6 +42,34 @@ function setup() {
   wfc();
 }
 
+/*
+function keyPressed() {
+    if (key === 'w') {
+        for (let k =0; k < thangs.length; k ++) {
+            thangs[k].change(0, -5);
+            thangs[k].display();
+        }
+    }
+    if (key === 'a') {
+        for (let k =0; k < thangs.length; k ++) {
+            thangs[k].change(-5, 0);
+            thangs[k].display();
+        }
+    }
+    if (key === 's') {
+        for (let k =0; k < thangs.length; k ++) {
+            thangs[k].change(0, 5);
+            thangs[k].display();
+        }
+    }
+    if (key === 'd') {
+        for (let k =0; k < thangs.length; k ++) {
+            thangs[k].change(5, 0);
+            thangs[k].display();
+        }
+    }
+}
+*/
 function draw() {
   background(0);
 
@@ -54,10 +87,17 @@ function draw() {
   // Run Wave Function Collapse!
   wfc();
 
+  for (let i = 0; i < molds.length; i++) {
+        molds[i].display();
+        molds[i].update();
+    }
+
+  /*
   for (let k =0; k < thangs.length; k ++) {
     thangs[k].move();
     thangs[k].display();
   }
+    */
 }
 
 
@@ -105,9 +145,7 @@ function wfc() {
     console.log("ran into a conflict");
     //noLoop();
     console.log(cell);
-    thangs.push(new Thing(cell.x ,cell.y));
-
-    return;
+    
   }
   
   // Set the file tile
@@ -116,6 +154,11 @@ function wfc() {
   // Propagate entropy reduction to neighbors
   reduceEntropy(grid, cell, 0);
 }
+
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 
 function reduceEntropy(grid, cell, depth) {
   // Stop propagation if max depth is reached
