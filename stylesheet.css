@@ -19,18 +19,21 @@ li , p {
 }
 
 details , summary {
-    --thing_color : #232323;
+    --thing_color : #195d00;
 }
 
 details {
-    border: 1px solid var(--thing_color); /* CIA Red */
-    border-radius: 4px;
+    border: 3px solid var(--thing_color); /* CIA Red */
+    border-radius: 10px;
     margin-bottom: 10px;
     background-color: black;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    align-self: left;
 }
 
 details > summary {
+  width: 80vw;
+
   list-style: none;
 }
 details > summary::-webkit-details-marker {
