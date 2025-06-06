@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://{{ site.url }}{{ page.url }}" />
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Charles Bennington</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+</head>
+<body>
+<style>
+    :root {
+        --sum_color: #025422;
+    }
+    #container {
+        margin: 5px;
+    }
+    var
+    details {
+            border: 1px solid var(--sum_color); /* CIA Red */
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: black;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        summary {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: black; /* CIA Red */
+            color: white;
+            border: 1px solid var(--sum_color);
+            outline: none;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        details details {
+            font-size: 80%;
+            margin-left: 20px;
+        }
+
+        summary:hover {
+            background-color: var(--sum_color); /* Darker Red */
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: normal normal;
+            background-color: var(--bg);
+            color: #fff;
+            font-family: "Inter", "DM Sans", Arial, sans-serif;
+        }
+</style>
+
+<!--Top Bar-->
+<header>
+    <table>
+        <tr>
+            <td>
+                <a id="top-href" href="index.html">
+                    <h1>
+                        <span>C</span><span>h</span><span>a</span><span>r</span><span>l</span><span>e</span><span>s</span>
+                        <span>B</span><span>e</span><span>n</span><span>n</span><span>i</span><span>n</span><span>g</span><span>t</span><span>o</span><span>n</span>
+                    </h1>
+                </a>
+            </td>
+            <td>
+                <div id="header-right">
+                    <nav>
+                        <a id="linkedInContact" href="https://www.linkedin.com/in/charles-bennington-a0773a331/" target="_blank" style="">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a  id="githubContact" class="github" href="https://github.com/cbennington852" target="_blank" >
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </nav>
+                </div>
+            </td>
+        </tr>
+    </table>
+</header>
+<div style="height: 80px"></div>
+<section>
+    <h1>Projects</h1>
+    <!--apply fun animation later-->
+</section>
+<!--Template -->
+<div id="container">
+    <section>
+        <!--MyPl Compiler-->
+        <details>
+            <summary>
+                MyPl Compiler 
+            </summary>
+            A handwritten compiler for the MyPL language. Created in 2025 as a semester long class project for OPL(Organization of programming langs) class. This language directly compiles to the Java Virtual machine, which uses assembly like instructions. 
+            This language features multiple benefits.
+            <ul>
+                <li>Permits writing direct VM code</li>
+                <li>Fast Compile Times</li>
+                <li></li>
+            </ul>
+        </details>
+
+        <!--Mold Simulation-->
+        <details>
+            <summary>
+                Mold Simulation
+            </summary>
+            <div id="canvas-container">
+                <script src="sketch.js"></script>
+                <script src="mold.js"></script>
+                <!--Flexbox layout-->
+                <canvas width="50%" id="myCanvas"></canvas> </div>
+                <p>A simulation of a plasmodial slime mold</p>
+        </details>
+
+        <!--Delta Green DND campaign-->
+        <details>
+            <summary>
+            Delta Green DND campaign
+            </summary>
+            Over the summer I was a DM(Dungeon master) for a Delta Green campaign. This experience was entirely volunteer based, and it taught me a lot about how to be creative, and how to manage people effectively. To make the campaign run smoothly, I created a small website.
+            <a href="./DeltaGreenFiles.html">Link to website</a>
+        </details>
+
+        <!--Bubble Simulation-->
+        <details>
+            <summary>
+            Bubble Simulation
+            </summary>
+            <div id="canvas-roseCanvas"></div>
+            A small simulation showing how bubble sort works from a visual perspective. Intractable. 
+        </details>
+
+        <!--Real Frequency Summer Project -->
+        <details>
+            <summary>
+                Real Frequency College List Helper
+            </summary>
+        </details>
+
+        <details>
+            <summary>
+                Coding Hub -- with Daniel Olivares 
+            </summary>
+        </details>
+        <!--
+            * Rose Simulation
+            * Bubble Simulation
+            * Real Frequency Summer Project
+            * Research with Olivares 
+        -->
+    </section>
+</div>
+
+
+</body>
+</html>
