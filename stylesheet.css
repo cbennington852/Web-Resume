@@ -7,9 +7,13 @@ HW3
 
 /* Media query for smaller screens */
 .row {
+    --side_margin: 20vw;
     display: flex;
     flex-wrap: wrap;
+    margin-left: var(--side_margin);
+    margin-right: var(--side_margin);
 }
+
 
 .col {
     display: flex;
@@ -262,9 +266,7 @@ h4 {
     text-align: center;
 }
 
-p {
-    color: #9d9e9d;
-}
+
 
 em {
     color: #dedcdc;
@@ -340,14 +342,10 @@ td{
     pointer-events: none
 }
 
-p {
-    font-size: 1.6rem;
-}
-
 
 /*COOL ANIMATION */
 .tag-list {
-    width: 70rem;
+    width: 80vw;
     max-width: 90vw;
     display: flex;
     flex-shrink: 0;
@@ -376,7 +374,7 @@ p {
 
 .inner img
 {
-    width: 75px;
+    width: 5vw;
 }
 
 .tag {
@@ -693,4 +691,9 @@ body {
         text-shadow: -0.025em 0 0 #ec2225, -0.025em -0.025em 0 #313f97,
         -0.025em -0.05em 0 #50c878;
     }
+}
+
+
+p {
+    font-size: 1.5em;
 }
