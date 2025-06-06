@@ -5,14 +5,68 @@ HW3
 9/14/2024
 */
 
+li , p {
+    --font_size : 1.5em;
+}
+
 /* Media query for smaller screens */
 .row {
-    --side_margin: 20vw;
+    --side_margin: 5vw;
     display: flex;
     flex-wrap: wrap;
     margin-left: var(--side_margin);
     margin-right: var(--side_margin);
 }
+
+details , summary {
+    --thing_color : #232323;
+}
+
+details {
+    border: 1px solid var(--thing_color); /* CIA Red */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: black;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+
+summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    background-color: black; /* CIA Red */
+    color: white;
+    border-bottom: 1px solid var(--thing_color);
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+details details {
+    font-size: 80%;
+    margin-left: 20px;
+}
+
+summary:hover {
+    background-color: var(--thing_color); /* Darker Red */
+}
+
+
+
+li {
+    font-size: var(--font_size);
+}
+
+
+p {
+    font-size: var(--font_size);
+}
+
 
 
 .col {
@@ -416,7 +470,6 @@ box-shadow:
 
 /*Aurora Animation*/
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
 
 :root {
     --bg: #000000;
@@ -436,7 +489,6 @@ body {
     place-items: center;
     background-color: var(--bg);
     color: #fff;
-    font-family: "Inter", "DM Sans", Arial, sans-serif;
 }
 
 *,
@@ -691,9 +743,4 @@ body {
         text-shadow: -0.025em 0 0 #ec2225, -0.025em -0.025em 0 #313f97,
         -0.025em -0.05em 0 #50c878;
     }
-}
-
-
-p {
-    font-size: 1.5em;
 }

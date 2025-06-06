@@ -1,11 +1,11 @@
 
 
-let colsRose, rowsRose; let sizeRose = 10;
+let colsRose, rowsRose; let sizeRose = 12;
 let threshold = 0.5; let t = 0;
 
 function sketch1(p) {
     p.setup = function () {
-        p.roseCanvas = p.createCanvas(400, 400);
+        p.roseCanvas = p.createCanvas(window.innerWidth/3, window.innerHeight/2);
         p.roseCanvas.parent("canvas-roseCanvas"); // Attach to the div
 
         colsRose = p.width / sizeRose;
