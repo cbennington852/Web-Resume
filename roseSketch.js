@@ -1,7 +1,7 @@
 
 
-let colsRose, rowsRose; let sizeRose = 12;
-let threshold = 0.5; let t = 0;
+let colsRose, rowsRose; let sizeRose = 20;
+let threshold = 0.2; let t = 0;
 
 function sketch1(p) {
     p.setup = function () {
