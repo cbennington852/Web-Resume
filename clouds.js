@@ -23,7 +23,7 @@ function draw() {
     clear();
     dotGrid();
     attribute += 1;
-    noiseDetail(4, 0.6);
+    noiseDetail(4, 0.5);
 }
 
 let attribute = 0;
@@ -32,10 +32,8 @@ function dotGrid() {
     fill(255);
 
     // Get the current gap and offset values from the sliders
-    gap = 4;
+    gap = 10;
     offset = 1;
-
-
 
     // Loop through x and y coordinates, at increments set by gap
     for (let x = gap / 2; x < width; x += gap) {

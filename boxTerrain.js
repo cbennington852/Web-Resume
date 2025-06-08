@@ -11,12 +11,14 @@ https://www.pattvira.com/
 
 let boxes = [];
 let size = 20; let cols, rows;
-let margin = 50; let scl = 50; let speed = 0.05;
+let margin = 1; let scl = 100; let speed = 50;
 let val = 0
+let width = 500;
+let height =500;
 
 function setup() {
-  createCanvas(1000, 1000, WEBGL);
-  noiseDetail(2, 0.25)
+  createCanvas(500, 500, WEBGL);
+  noiseDetail(0.1, 2);
   cols = (width - margin*2)/size;
   rows = (height - margin*2)/size;
   
@@ -53,9 +55,9 @@ class Box {
     this.pos = createVector(x, y, z);
     this.initZ = this.pos.z;
     this.angle = (angle + val) % 360;
-    this.scl =   noise(this.pos.x, this.pos.y, this.pos.z) * 800;
+    this.scl =   noise(this.pos.x, this.pos.y, this.pos.z) * scl;
 ;
-    this.speed = noise(this.pos.x, this.pos.y, this.pos.z) * 800;
+    this.speed = noise(this.pos.x, this.pos.y, this.pos.z) * speed;
 ;
     val += 1;
   }
@@ -71,7 +73,7 @@ class Box {
     let r = map(sin(this.angle), -1, 1, 100, 255);
     let g = map(sin(this.angle + 2), -1, 1, 100, 255);
     let b = map(sin(this.angle + 4), -1, 1, 100, 255);
-    fill(r, g, b);
+    fill(0, g, b);
     
     push();
     translate(this.pos.x, this.pos.y, this.pos.z);

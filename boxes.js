@@ -1,5 +1,5 @@
 let cols; let rows;
-let size = 20;
+let size = 5;
 let c = [];
 
 function setup() {

@@ -2,7 +2,7 @@ let shape;
 let img;
 
 function setup() {
-    createCanvas(710, 400, WEBGL);
+    createCanvas(800, 800, WEBGL);
 
     describe(
         'a 3d example containing a spinning box and a sphere, each lit with a number of different lights, including ambient (gray), directional (red), spotlight (green), and point (blue).'
@@ -16,6 +16,10 @@ function preload() {
     img = loadImage('assets/fish_texture.png');
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function draw() {
     background(0);
 
@@ -25,32 +29,24 @@ function draw() {
     // ambient light is gray
     ambientLight(50);
     // directional light is red
-    directionalLight(255, 0, 0, 0.25, 0.25, 0);
+    directionalLight(255, 200, 0, 0.25, 0.25, 0);
      //point light is blue
     pointLight(0, 0, 255, locX, locY, 250);
 
     push();
-    translate(-width / 4, 0, 0);
+    translate(-width / 4, 200*Math.random(), 100*Math.random());
     rotateZ(frameCount * 0.02);
     rotateX(frameCount * 0.02);
-    let k = (mouseX + mouseY) / 50;
     noStroke();
     texture(img);
-    model(shape, 100);
-    pop();
-
-    push();
-    translate(-width / 4, 0, 0);
-    rotateZ(frameCount * 0.02);
-    rotateX(frameCount * 0.02);
-    torus(100,10,100)
+    emissiveMaterial(34, 139, 34);
+    scale(2);
+    model(shape);
     pop();
 
 
-
+    
 
     orbitControl();
-
-
 
 }
