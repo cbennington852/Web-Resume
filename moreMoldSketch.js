@@ -1,7 +1,7 @@
 // Set up canvas
 
  let d; let molds = []; let moldNum = 10000;
- let canvasSize = 700;
+ let canvasSize = 500;
  let points = [];
 let circleX, circleY;
 let spawnPoints = [];

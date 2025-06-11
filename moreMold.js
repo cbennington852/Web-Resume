@@ -36,8 +36,8 @@ class mold {
         this.lSensorPos.x = this.x + this.sensorDist*cos(this.heading - this.sensorAngle);
         this.lSensorPos.y = this.y + this.sensorDist*sin(this.heading - this.sensorAngle);
 
-        this.fSensorPos.x = this.x + this.sensorDist*cos(this.heading);
-        this.fSensorPos.y = this.y + this.sensorDist*sin(this.heading);
+        this.fSensorPos.x = this.x + this.sensorDist*this.vx;
+        this.fSensorPos.y = this.y + this.sensorDist*this.vx;
 
         let index, l, r,f;
         index = 4*(d * floor(this.rSensorPos.y)) * (d * width) + 4*(d * floor(this.rSensorPos.x));
@@ -76,8 +76,6 @@ class mold {
         else if (r > l) {
             this.heading += this.rotAngle;
         }
-
-
     }
 
 

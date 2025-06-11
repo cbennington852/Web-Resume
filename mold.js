@@ -1,5 +1,5 @@
 class mold {
-    constructor (startingPosX,startingPosY, canvasSize , moldColor) {
+    constructor (startingPosX,startingPosY , moldColor) {
         this.x = startingPosX;
         this.y = startingPosY;
         this.r = 0.5;

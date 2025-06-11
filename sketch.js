@@ -14,7 +14,7 @@ function setup() {
     d = pixelDensity();
 
     for (let i = 0; i < moldNum; i++) {
-        molds[i] = new mold(i%canvasSize,i%canvasSize, canvasSize, 90);
+        molds[i] = new mold(i%canvasSize,i%canvasSize,  90);
     }
 }
 
