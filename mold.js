@@ -1,18 +1,19 @@
 class mold {
-    constructor (startingPosX,startingPosY , moldColor) {
+    constructor (startingPosX,startingPosY , moldColor , p) {
+    	this.p = p;
         this.x = startingPosX;
         this.y = startingPosY;
         this.r = 0.5;
         this.color = moldColor;
 
-        this.heading = random(360);
-        this.vx = cos(this.heading);
-        this.vy = sin(this.heading);
+        this.heading = p.random(360);
+        this.vx = p.cos(this.heading);
+        this.vy = p.sin(this.heading);
         this.rotAngle = 45;
 
-        this.rSensorPos = createVector(0,0);
-        this.fSensorPos = createVector(0,0);
-        this.lSensorPos = createVector(0,0);
+        this.rSensorPos = p.createVector(0,0);
+        this.fSensorPos = p.createVector(0,0);
+        this.lSensorPos = p.createVector(0,0);
         this.sensorAngle = 45;
         this.sensorDist = 10;
         this.colorF = 0;
@@ -23,20 +24,20 @@ class mold {
 
     update () {
 
-        this.vx = cos(this.heading);
-        this.vy = sin(this.heading);
+        this.vx = p.cos(this.heading);
+        this.vy = p.sin(this.heading);
 
         this.x = (this.x + this.vx) % width;
         this.y = (this.y + this.vy) % height;
 
-        this.rSensorPos.x = this.x + this.sensorDist*cos(this.heading + this.sensorAngle);
-        this.rSensorPos.y = this.y + this.sensorDist*sin(this.heading + this.sensorAngle);
+        this.rSensorPos.x = this.x + this.sensorDist*p.cos(this.heading + this.sensorAngle);
+        this.rSensorPos.y = this.y + this.sensorDist*p.sin(this.heading + this.sensorAngle);
 
-        this.lSensorPos.x = this.x + this.sensorDist*cos(this.heading - this.sensorAngle);
-        this.lSensorPos.y = this.y + this.sensorDist*sin(this.heading - this.sensorAngle);
+        this.lSensorPos.x = this.x + this.sensorDist*p.cos(this.heading - this.sensorAngle);
+        this.lSensorPos.y = this.y + this.sensorDist*p.sin(this.heading - this.sensorAngle);
 
-        this.fSensorPos.x = this.x + this.sensorDist*cos(this.heading);
-        this.fSensorPos.y = this.y + this.sensorDist*sin(this.heading);
+        this.fSensorPos.x = this.x + this.sensorDist*p.cos(this.heading);
+        this.fSensorPos.y = this.y + this.sensorDist*p.sin(this.heading);
 
         let index, l, r,f;
         index = 4*(d * floor(this.rSensorPos.y)) * (d * width) + 4*(d * floor(this.rSensorPos.x));
@@ -75,9 +76,9 @@ class mold {
     
 
     display () {
-        noStroke();
-        fill(this.colorL,this.colorF,this.colorR);
-        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*2);
+        p.noStroke();
+        p.fill(this.colorL,this.colorF,this.colorR);
+        p.ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*2);
 
         // line(this.x, this.y, this.x + this.r*3*this.vx, this.y + this.r*3*this.vy );
         // fill('red');
