@@ -1,4 +1,4 @@
-# Name later
+# A murder in red
 Mind controlled crows chase agents
 
 ## Hook
@@ -55,6 +55,6 @@ Around 9:30pm (1.5 hrs after arrival) a grey tall man will arrive on campus, wea
 If spotted he will mind control the birds, signalling them to attack the agents. If not spotted, he will retrive the items from the nest, and give the birds a bagel.
 
 Stats:
-* hp: 5
+* HP: 5
 * phantom punch .. 60% 1d6
 * mind control ... agents rolls POW
