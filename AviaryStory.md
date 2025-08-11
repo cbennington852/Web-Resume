@@ -50,9 +50,9 @@ With a successful search or buracracy roll, the agents can find a small locked l
 * Small vials (cursed object grade 3). If drunken the user will be able to talk to birds(both a blessing and a curse)
 
 ## Tall Man with bagel
-Around 9:30pm (1.5 hrs after arrival) a grey tall man will arrive on campus, wearing a blanket. He is teleporting in, so he will simply appear near the entrance of the building, and walk inside. Maybe the agents catch him walking back from the office, maybe they don't. 
+Around 9:30pm (1.5 hrs after arrival) a grey tall man will arrive on campus, wearing a blanket. He is teleporting in, so he will simply appear near the entrance of the building, and walk inside. Maybe the agents catch him walking back from the office, maybe they don't. He has a bagel.
 
-If spotted he will mind control the birds, signalling them to attack the agents. 
+If spotted he will mind control the birds, signalling them to attack the agents. If not spotted, he will retrive the items from the nest, and give the birds a bagel.
 
 Stats:
 * hp: 5
