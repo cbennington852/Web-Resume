@@ -1,0 +1,160 @@
+body {
+    font-family: 'GT America', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #111;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'GT Sectra', serif;
+    font-size: 2.5em;
+    margin: 0;
+    color: #e60012;
+}
+
+main, section {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+a {
+    color: #e60012;
+    text-decoration: none;
+    
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    table {
+        width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table caption {
+    font-family: 'GT Sectra', serif;
+    font-size: 1.5em;
+    color: #e60012;
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #444;
+    text-align: left;
+}
+
+th {
+    background-color: #222;
+}
+
+
+
+footer {
+    background-color: #111;
+    color: #777;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+:root{
+    --success :  #03591a;
+    --resolved : #17a4bd;
+    --critical : #bdb217;
+    --failure : crimson;
+
+
+}
+
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    th, td {
+        font-size: 0.5em;
+    }
+
+    a {
+        word-break: break-word;
+    }
+}
+
+details {
+    border: 1px solid #e52207; /* CIA Red */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: black;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: black; /* CIA Red */
+    color: white;
+    border-bottom: 1px solid #e52207;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+details details {
+    font-size: 80%;
+    margin-left: 20px;
+}
+
+summary:hover {
+    background-color: #d83933; /* Darker Red */
+}
+
+ul {
+    list-style: none;
+    padding: 16px;
+    margin: 0;
+}
+
+li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.level {
+    font-weight: bold;
+    color: #e52207; /* CIA Red */
+}
+
+p {
+    display: inline;
+}
