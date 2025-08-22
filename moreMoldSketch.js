@@ -9,6 +9,8 @@ let spawnPoints = [];
 let moldColor = 150;
 let ringDensity = 500;
 let clickType = false;
+let  = 3;
+let shearing = 3;
 
 function preload () {
     font = loadFont("fonts/Roboto-Regular.ttf");
@@ -24,6 +26,7 @@ function preload () {
             moldNum = document.getElementById('moldNum').value;
             moldColor = document.getElementById('moldColor').value;
             ringDensity = document.getElementById('ringDensity').value;
+            shearing = document.getElementById('Shearing').value;
             setup();
         });
     });
@@ -55,14 +58,14 @@ function setup() {
         const angle = (i / moldNum) * 2 * Math.PI;
         const x = centerX + radius * Math.cos(angle);
         const y = centerY + radius * Math.sin(angle);
-        molds[i] = new mold(x,y, canvasSize, moldColor, ringDensity);
+        molds[i] = new mold(x,y, canvasSize, moldColor, ringDensity , shearing);
     }
 
     for (let i = 0; i < moldNum; i++) {
         const angle = (i / moldNum) * 2 * Math.PI;
         const x = centerX + radius * Math.cos(angle);
         const y = centerY + radius * Math.sin(angle);
-        molds[i] = new mold(x,y, canvasSize, moldColor, ringDensity);
+        molds[i] = new mold(x,y, canvasSize, moldColor, ringDensity , shearing);
     }
 }
 

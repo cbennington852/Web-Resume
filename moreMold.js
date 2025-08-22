@@ -1,6 +1,7 @@
 class mold {
-    constructor (startingPosX,startingPosY, canvasSize , moldColor, ringDensity) {
+    constructor (startingPosX,startingPosY, canvasSize , moldColor, ringDensity , shearing) {
         this.x = startingPosX;
+        this.shearing = shearing
         this.y = startingPosY;
         this.r = 0.5;
         this.color = moldColor;
@@ -83,7 +84,7 @@ class mold {
     display () {
         noStroke();
         fill(this.colorL,this.colorF,this.colorR);
-        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*2);
+        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*this.shearing);
     }
 }
 

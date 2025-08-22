@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="stylesheet.css">
     <title>Charles Bennington</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
 </head>
 <style>
@@ -143,13 +144,14 @@
 
 
 <main>
+    <p>dsdsfb</p>
     <div style="height: 110px"></div>
     <script src="moreMoldSketch.js"></script>
     <script src="moreMold.js"></script>
     <button style="display: block; width: fit-content;" onclick="location.href='index.html'">< Back</button>
     <section>
         <h2>
-            Mold simiulation
+            Mold simulation
         </h2>
 
         <div class="row">
@@ -166,13 +168,19 @@
 
                         <div class="settingsBox" >
                             <p>Mold color</p>
-                            <input type="range" min="1" max="255" value="150" class="setting" id="moldColor">
+                            <input type="range" min="0" max="255" value="150" class="setting" id="moldColor">
                         </div>
 
                         <div class="settingsBox" >
                             <p>Ring collection size</p>
-                            <input class="setting" type="range" min="1" max="2000" value="500"  id="ringDensity">
+                            <input class="setting" type="range" min="1" max="1000" value="500"  id="ringDensity">
                         </div>
+
+                        <div class="settingsBox" >
+                            <p>Shearing</p>
+                            <input class="setting" type="range" min="1" max="30" value="3"  id="Shearing">
+                        </div>
+
 
                     </div>
                 </div>
@@ -198,4 +206,24 @@
 </main>
 
 </body>
+<script>
+    const fadeElements = document.querySelectorAll('section');
+
+    console.log(fadeElements);
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Optional: stop observing once visible
+            }
+        });
+    }, {
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    });
+
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+</script>
 </html>
