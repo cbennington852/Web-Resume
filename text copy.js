@@ -1,46 +1,51 @@
-// Set up canvas
 
-const sketch_mold = (p) => {
-    let d; let molds = []; let moldNum = 1500;
+
+const sketch_thing = (p) => {
     let canvasSize = window.innerWidth;
-    let points = [];
-    let circleX, circleY;
-    let spawnPoints = [];
-
+    const height = canvasSize/3;
+    const width = window.innerWidth/2;
+    let color = 0;
+    let mouse_w = 0;
+    let d= 10;
+    let bubbles = [];
+    const num_bubbles = 20;
     p.setup = () => {
-        canvas = p.createCanvas(canvasSize/3, window.innerHeight/2);
-        canvas.parent("canvas-container"); // Attach to the div
+        canvas = p.createCanvas( height , width);
+        canvas.parent("canvas-roseCanvas"); // Attach to the div
         p.angleMode(p.DEGREES);
-
-        d = p.pixelDensity();
-
-        for (let i = 0; i < moldNum; i++) {
-            molds[i] = new mold(i%canvasSize,i%canvasSize,  90 , p);
+        for (let x = 0; x < num_bubbles; x++) {
+            bubbles.push(new Bubble(x , color , 50, p));
         }
-    };
+    }
 
-	p.draw = () => {
-	    p.background(0,5);
-	    p.loadPixels();
-	
-	    for (let i = 0; i < moldNum; i++) {
-	        molds[i].display();
-	        molds[i].update();
-	    }
-	};
+    p.draw = () => {
+        
 
 
-	// Called whenever the mouse is pressed
-	p.mousePressed = () => {
-	    // Check if the mouse is inside the canvas
-	    if (p.mouseX >= 0 && p.mouseX <= p.width && p.mouseY >= 0 && p.mouseY <= p.height) {
-	        console.log("Mouse clicked at:", p.mouseX, p.mouseY);
-	        p.fill(255, 0, 0);
-	        p.ellipse(p.mouseX, p.mouseY, 200, 200); // Draw a red circle where clicked
-	    }
-	};
+        p.fill(p.color(color , (color - mouse_w) % 160 , (color + mouse_w) % 160)); // White circle
+        color = (color + 1) % 250;
+        p.noStroke();
+        p.circle(p.mouseX, p.mouseY, 50);
 
-	class mold {
+  
+        
+
+        for (let x = 0; x < num_bubbles; x++) {
+            bubbles[x].update();
+            bubbles[x].display();
+        }
+
+       p.noStroke();
+        p.fill(0, 0, 0, 3); // Black with low alpha for slow fade
+        p.rect(0, 0, p.width, p.height);
+    }
+
+    p.mouseWheel = () => {
+        mouse_w  = (mouse_w + 5) % 255;
+    }
+
+
+    class Bubble {
 		constructor (startingPosX,startingPosY , moldColor , p) {
 			this.p = p;
 			this.x = startingPosX;
@@ -65,6 +70,11 @@ const sketch_mold = (p) => {
 		}
 
 		update () {
+
+            if (p.dist(this.x , this.y , p.mouseX  ,p.mouseY) < 20) {
+                this.x = 0;
+                this.y = 0;
+            }
 
 			this.vx = p.cos(this.heading);
 			this.vy = p.sin(this.heading);
@@ -125,27 +135,20 @@ const sketch_mold = (p) => {
 
 		}
 		
-
 		display () {
 			p.noStroke();
 			p.fill(this.colorL,this.colorF,this.colorR);
-			p.ellipse(this.x%canvasSize, this.y%canvasSize, this.r*6, this.r*6);
-
-			// line(this.x, this.y, this.x + this.r*3*this.vx, this.y + this.r*3*this.vy );
-			// fill('red');
-			// ellipse(this.rSensorPos.x, this.rSensorPos.y, this.r*3, this.r*3);
-			// ellipse(this.fSensorPos.x, this.fSensorPos.y, this.r*3, this.r*3);
-			// ellipse(this.lSensorPos.x, this.lSensorPos.y, this.r*3, this.r*3);
+			p.ellipse(this.x%canvasSize, this.y%canvasSize, this.r*20, this.r*20);
 		}
 	}
-
-	
-};
-
-new p5(sketch_mold);
+}
 
 
 
+
+
+
+new p5(sketch_thing);
 
 
 
