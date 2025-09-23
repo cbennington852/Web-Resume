@@ -84,7 +84,7 @@ class mold {
     display () {
         noStroke();
         fill(this.colorL,this.colorF,this.colorR);
-        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*2, this.r*this.shearing);
+        ellipse(this.x%canvasSize, this.y%canvasSize, this.r*3, this.r*this.shearing);
     }
 }
 
