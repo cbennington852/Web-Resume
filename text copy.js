@@ -18,6 +18,8 @@ const sketch_thing = (p) => {
         }
     }
 
+	/*******/
+
     p.draw = () => {
         
 
