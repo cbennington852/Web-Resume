@@ -149,66 +149,13 @@
 
 
 <main>
-    <p>dsdsfb</p>
-    <div style="height: 110px"></div>
-    <script src="moreMoldSketch.js"></script>
-    <script src="moreMold.js"></script>
-    <button style="display: block; width: fit-content;" onclick="location.href='index.html'">< Back</button>
-    <section>
-        <h2>
-            Mold simulation
-        </h2>
-
-        <div class="row">
-            <div id="canvas-container">
-
-            </div>
-            <div class="col">
-                <div id="moldControls">
-                    <div class="container">
-                        <div class="settingsBox" >
-                            <p>Mold count (warning: higher values may result in performance issues)</p>
-                            <input type="range" min="1" max="15000" value="9000" class="setting" id="moldNum">
-                        </div>
-
-                        <div class="settingsBox" >
-                            <p>Mold color</p>
-                            <input type="range" min="0" max="255" value="150" class="setting" id="moldColor">
-                        </div>
-
-                        <div class="settingsBox" >
-                            <p>Ring collection size</p>
-                            <input class="setting" type="range" min="1" max="1000" value="500"  id="ringDensity">
-                        </div>
-
-                        <div class="settingsBox" >
-                            <p>Shearing</p>
-                            <input class="setting" type="range" min="1" max="30" value="3"  id="Shearing">
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-        <p>This project presents a simulation of a plasmodial slime mold (Myxogastria), inspired by biological principles and referenced from Wikipedia.
-            The simulation is designed to model the movement and aggregation behavior of slime mold in a computationally efficient manner, allowing real-time visu
-            alization in a web browser.</p>
-        <p>The underlying algorithm has been simplified to optimize performance within a browser environment. Each mold particle follows a behavior analogous to real
-            plasmodial slime mold, moving toward the brightest nearby particle. This behavior simulates the natural tendency of slime mold to aggregate and navigate
-            toward nutrient sources or other mold structures.</p>
-        <p>The <strong>mold count </strong> parameter represents the total number of individual mold particles present in the simulation at any given time. </p>
-        <p>The <strong>color parameter</strong> adjusts the red (R) component of the mold's RGB color value, influencing its visual representation. </p>
-        <p>The <strong>ring collection size</strong> parameter controls the distance from the simulation's center at which mold behavior is modified.
-            When mold particles exceed a specific threshold distance, their blue (B) color component is altered, promoting the emergence of distinct ring-like formations.
-            A lower ring collection size enhances the visibility of these concentric structures, resulting in more pronounced patterns.
-            Conversely, a higher value reduces the frequency of ring formation, leading to a more diffuse and less structured appearance.</p>
-        <p>At lower ring collection settings, the simulation produces highly visible, periodic ring structures that create visually striking and dynamic patterns.</p>
-        <p>If you find this interesting, feel free to contact me more about it. </p>
-    </section>
+    
 </main>
+
+
+
+
+
 
 </body>
 <script>

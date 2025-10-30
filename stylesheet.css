@@ -136,6 +136,21 @@ button:hover {
 
 }
 
+#researchLink {
+    text-decoration: none;
+    color: #016612;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+#researchLink:hover {
+    text-decoration: none;
+    color: #016612;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #016612; /* Add a border on hover */
+
+}
 
 #linkedInContact {
     text-decoration: none;
