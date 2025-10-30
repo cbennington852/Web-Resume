@@ -136,6 +136,8 @@ button:hover {
 
 }
 
+
+
 #researchLink {
     text-decoration: none;
     color: #016612;
@@ -771,4 +773,22 @@ body {
         text-shadow: -0.025em 0 0 #ec2225, -0.025em -0.025em 0 #313f97,
         -0.025em -0.05em 0 #50c878;
     }
+}
+
+
+
+
+.publicationHeader {
+    font-size:medium;
+    align-self: center;
+    align-content: center;
+}
+.publicationsSection {
+    
+    background-color: #000000;
+}
+
+.publication {
+    font-size:medium;
+    text-align: left;
 }
