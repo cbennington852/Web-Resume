@@ -784,7 +784,9 @@ body {
     align-content: center;
 }
 .publicationsSection {
-    
+    margin-left: 20%;
+    margin-right: 20%;
+
     background-color: #000000;
 }
 
