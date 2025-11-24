@@ -1,4 +1,5 @@
 
 /node_modules
 dot.js
+/example_class/venv
 .idea/php.xml
