@@ -7,6 +7,11 @@ body {
 }
 
 
+.redacted {
+    background-color: #000;
+    visibility: hidden;
+}
+
 
 header {
     background-color: #111;
