@@ -55,3 +55,10 @@ Looses 1 HP every 1 minutes
      - Forensic ( 70% )
      - all else 50%
 
+
+
+-------------------------------------------------------------------
+This is a work of fiction for the purpose of DND(dungeons and dragons). Do not eat lead. Follow all government laws.    
+-------------------------------------------------------------------
+
+

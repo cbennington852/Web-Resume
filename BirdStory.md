@@ -61,8 +61,9 @@ Stats:
 * phantom punch .. 60% 1d6
 * mind control ... agents rolls POW
 
-21/30
 
-2/10
 
-5/10
+-------------------------------------------------------------------
+This is a work of fiction for the purpose of DND(dungeons and dragons). Do not eat lead. Follow all government laws.    
+-------------------------------------------------------------------
+
