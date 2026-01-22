@@ -1,8 +1,11 @@
 # Red Alert
 A Direct attempt on your handlers life. 
 
+ellensberg
+
+
 ## Hook
-Right after a particularly messy operation. The handler calls you to a IHOP at 10pm at night. This might be the normal location, this might be out of the ordinary, either way is fine. He sits you down at the IHOP, you can smell the pancakes on him, maybe even see some crumbs on his shirt. 
+Right after a particularly messy operation. The handler calls you to a IHOP at 8pm at night. This might be the normal location, this might be out of the ordinary, either way is fine. He sits you down at the IHOP, you can smell the pancakes on him, maybe even see some crumbs on his shirt. 
 
 He gives you the rundown, the players need to move a small box from one greenbox to another. (See greenboxes).  The handler then takes the players into the parking lot. There's a U-Haul in the IHOP parking lot. 
 
@@ -17,6 +20,9 @@ A normal sized man holding a firearm. He will attempt to leave via his dodge cha
 - FIREARMS : 60%  --- 1d10 (Glock)
 - DRIVE    : 50% 
 - All other stats 50%
+
+
+4
 
 Inventory: 
     Black hoodie, and small walkies talkie. 
@@ -39,8 +45,8 @@ The handler is bleeding out, very fast. He will die unless given immediate medic
 - FIREARMS : 65% -- 1d12 (Colt Viper)
 - INT      : 75% 
 - All other stats 50%
-HP 7 / 12
-Looses 1 HP every 1 minutes 
+HP 12 / 12 (Pain )
+ Looses 1 HP every 1 minutes 
 ```
 
 **If stablised:**
@@ -57,8 +63,51 @@ Looses 1 HP every 1 minutes
 
 
 
+
+Backup in 9 mins. 
+     ... 
+
+
+19 unit
+
 -------------------------------------------------------------------
 This is a work of fiction for the purpose of DND(dungeons and dragons). Do not eat lead. Follow all government laws.    
 -------------------------------------------------------------------
 
 
+
+
+# Agent John has
+A VHS tape; playing it shows a handheld video recording of a performance at a strip club. A woman expertly transits a greased pole, removing articles of clothing to the approving leers and jeers of the seated audience. Someone behind the camera shouts an unintelligible phrase - GOLLYNACK? IGOLNAG? - the stripper ignores him and he shouts it again. She falls to the ground, seizing. Vomits on herself. Bites through her tongue. A man rushes onto the stage to help. She grabs him by the head. Her hands come away bloody, as does his face. He screams. She swells to meet him. The tape ends.
+
+(0/1 SAN from Violence, +1% Unnatural)
+
+[Watching the tape a few times, or using SIGINT or plain INT to decipher the strange word spoken by the cameraman, implants the name Y'golonac in the viewerâ€™s mind, opening them up to possession by the flabby, entombed godling. Their sweaty Lord whispers to them through his twin mouths, instructing them in his perverse will, to spread his gospel.
+
+If such a person undergoes a temporary insanity, is reduced to 2 HP or lower, or is presented with an opportunity to engage in serious depravity, they are temporarily transformed into an avatar of Yâ€™golonac.
+
+AVATAR OF Yâ€™GOLONAC
+
+STR 25, CON 125, DEX 5, INT 12, POW 15
+HP 75, WP 15
+
+Skills: Athletics 20%, Alertness 40%
+
+Attacks: Caress (100%, D4, Drain, Permanent)
+
+CARESS: The avatar licks, sucks, nibbles and bites the victim with the mouths on its hands, draining D4 HP, 1 INT and 1 POW. These wounds never close naturally. Armor mitigates the damage but not the INT and POW drain, and is stripped away equal to the damage dealt.
+FLABBY CORPUS: The avatar is a Huge target, lethality attacks fail and inflict damage equal to their lethality rating. Rolls to hit it are at +20%. It is blind and hunts by scent and sound, and is uncoordinated in its movements.
+
+SAN LOSS: 1/D10]
+
+# Agent William has 
+
+A wine bottle case. Inside is a machete with an etched blade (Chemistry 20% or Metalworking 20% indicates acid etched). The wooden handle is painted blue with the image of a smiling skull with a top hat carved into the pommel. Anthropology 40%, Archeology 40% or Occult 40% (or any two at 20%) reveals itâ€™s an homage to Baron Samedi, one of the loa in Voodoo. Unnatural 30% recognizes the etchings as having hypergeometric significance. It can hurt Transcendent entities.
+
+# Agent Snitzel has
+Flash drives with minecraft 2
+
+# The womasn in the box
+Cave in montanna , GPS locations. Many of the stature people in a cave. 
+Yellow king stuff. .. figure out later. 
+- 
