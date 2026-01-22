@@ -1,48 +1,11 @@
 // Set up canvas
 
-const sketch_mold = (p) => {
-    let d; let molds = []; let moldNum = 1500;
-    let canvasSize = window.innerWidth;
-    let points = [];
-    let circleX, circleY;
-    let spawnPoints = [];
 
-    p.setup = () => {
-        canvas = p.createCanvas(canvasSize/3, window.innerHeight/2);
-        canvas.parent("canvas-container"); // Attach to the div
-        p.angleMode(p.DEGREES);
-
-        d = p.pixelDensity();
-
-        for (let i = 0; i < moldNum; i++) {
-            molds[i] = new mold(i%canvasSize,i%canvasSize,  90 , p);
-        }
-    };
-
-	p.draw = () => {
-	    p.background(0,5);
-	    p.loadPixels();
-	
-	    for (let i = 0; i < moldNum; i++) {
-	        molds[i].display();
-	        molds[i].update();
-	    }
-	};
-
-
-	// Called whenever the mouse is pressed
-	p.mousePressed = () => {
-	    // Check if the mouse is inside the canvas
-	    if (p.mouseX >= 0 && p.mouseX <= p.width && p.mouseY >= 0 && p.mouseY <= p.height) {
-	        console.log("Mouse clicked at:", p.mouseX, p.mouseY);
-	        p.fill(255, 0, 0);
-	        p.ellipse(p.mouseX, p.mouseY, 200, 200); // Draw a red circle where clicked
-	    }
-	};
-
-	class mold {
-		constructor (startingPosX,startingPosY , moldColor , p) {
+class index_file_mold {
+		constructor (startingPosX, startingPosY , moldColor , p , canvasSize) {
+			this.d = p.pixelDensity();
 			this.p = p;
+			this.canvasSize = canvasSize;
 			this.x = startingPosX;
 			this.y = startingPosY;
 			this.r = 0.5;
@@ -57,7 +20,7 @@ const sketch_mold = (p) => {
 			this.fSensorPos = p.createVector(0,0);
 			this.lSensorPos = p.createVector(0,0);
 			this.sensorAngle = 45;
-			this.sensorDist = 10;
+			this.sensorDist = 5;
 			this.colorF = 0;
 			this.colorR = 0;
 			this.colorL = 0;
@@ -65,50 +28,66 @@ const sketch_mold = (p) => {
 		}
 
 		update () {
+			const width = this.p.floor(this.p.width);
+			const height = this.p.floor(this.p.height);
 
-			this.vx = p.cos(this.heading);
-			this.vy = p.sin(this.heading);
+			this.vx = this.p.cos(this.heading);
+			this.vy = this.p.sin(this.heading);
 
-			this.x = (this.x + this.vx) % p.width;
-			this.y = (this.y + this.vy) % p.height;
+			this.x = (this.x + this.vx) % width;
+			this.y = (this.y + this.vy) % height;
 
 			if (this.x <= 0 ){
-				this.x = canvasSize;
+				this.x = this.canvasSize;
 			}
 			if (this.y <= 0 ){
-				this.y = canvasSize;
+				this.y = this.canvasSize;
 			}
 
-			//console.log(this.x , this.y);
+		
+			this.rSensorPos.x = this.x + this.sensorDist*this.p.cos(this.heading + this.sensorAngle);
+			this.rSensorPos.y = this.y + this.sensorDist*this.p.sin(this.heading + this.sensorAngle);
 
-			this.rSensorPos.x = this.x + this.sensorDist*p.cos(this.heading + this.sensorAngle);
-			this.rSensorPos.y = this.y + this.sensorDist*p.sin(this.heading + this.sensorAngle);
+			this.lSensorPos.x = this.x + this.sensorDist*this.p.cos(this.heading - this.sensorAngle);
+			this.lSensorPos.y = this.y + this.sensorDist*this.p.sin(this.heading - this.sensorAngle);
 
-			this.lSensorPos.x = this.x + this.sensorDist*p.cos(this.heading - this.sensorAngle);
-			this.lSensorPos.y = this.y + this.sensorDist*p.sin(this.heading - this.sensorAngle);
+			this.fSensorPos.x = this.x + this.sensorDist*this.p.cos(this.heading);
+			this.fSensorPos.y = this.y + this.sensorDist*this.p.sin(this.heading);
 
-			this.fSensorPos.x = this.x + this.sensorDist*p.cos(this.heading);
-			this.fSensorPos.y = this.y + this.sensorDist*p.sin(this.heading);
+			const getPixelValue = (v) => {
+				// 1. Constrain to canvas bounds so we don't go out of array range
+				let x = this.p.constrain(this.p.floor(v.x), 0, width - 1);
+				let y = this.p.constrain(this.p.floor(v.y), 0, height - 1);
+				
+				// 2. Calculate index and ensure it is an INTEGER using Math.floor or | 0
+				let index = 4 * (d * y * d * width + d * x);
+				index = Math.floor(index); 
+				
+				// Return the Red channel (pixels[index])
+				return this.p.pixels[index];
+			};
 
-			let index, l, r,f;
-			index = 4*(d * p.floor(this.rSensorPos.y)) * (d * p.width) + 4*(d * p.floor(this.rSensorPos.x));
-			r = p.pixels[index];
+			let index,l,f,r = 0;
+			let index_r = 0;
+			let index_f = 0;
+			let index_l = 0;
+			r = getPixelValue(this.rSensorPos);
+			f = getPixelValue(this.fSensorPos);
+			l = getPixelValue(this.lSensorPos);
 
-			index = 4*(d * p.floor(this.fSensorPos.y)) * (d * p.width) + 4*(d * p.floor(this.fSensorPos.x));
-			f = p.pixels[index];
 
-			index = 4*(d * p.floor(this.lSensorPos.y)) * (d * p.width) + 4*(d * p.floor(this.lSensorPos.x));
-			l = p.pixels[index];
+			console.log("Curr" , r , f , l);
+			console.log("LFR" , index_r , index_f , index_l);
 
 			this.colorF = (f + this.color)%255;
-			this.colorR = (r)%255;
+			this.colorR = (this.r)%255;
 			this.colorL = (l)%255 + 70;
 
 			if ((f > l) && (f > r)) {
 				this.heading += 0;
 			}
 			else if (f < l && f < r) {
-				if (p.random(1) < 0.5) {
+				if (this.p.random(1) < 0.5) {
 					this.heading += this.rotAngle;
 				}
 				else {
@@ -121,25 +100,53 @@ const sketch_mold = (p) => {
 			else if (r > l) {
 				this.heading += this.rotAngle;
 			}
-
-
 		}
-		
 
 		display () {
-			p.noStroke();
-			p.fill(this.colorL,this.colorF,this.colorR);
-			p.ellipse(this.x%canvasSize, this.y%canvasSize, this.r*6, this.r*6);
-
-			// line(this.x, this.y, this.x + this.r*3*this.vx, this.y + this.r*3*this.vy );
-			// fill('red');
-			// ellipse(this.rSensorPos.x, this.rSensorPos.y, this.r*3, this.r*3);
-			// ellipse(this.fSensorPos.x, this.fSensorPos.y, this.r*3, this.r*3);
-			// ellipse(this.lSensorPos.x, this.lSensorPos.y, this.r*3, this.r*3);
+			this.p.noStroke();
+			this.p.fill(this.colorL,this.colorF,this.colorR);
+			this.p.ellipse(this.x%this.canvasSize, this.y%this.canvasSize, this.r*6, this.r*6);
 		}
-	}
+}
 
+
+function sketch_mold (p) {
+    let new_molds = []; let moldNum = 500;
+    let canvasSize = p.floor(window.innerWidth);
+
+
+    p.setup = () => {
+        canvas = p.createCanvas(canvasSize/3, window.innerHeight/2);
+        canvas.parent("canvas-container"); // Attach to the div
+        p.angleMode(p.DEGREES);
+
+        d = p.pixelDensity();
+		console.log("Pixel dense" , d);
+        for (let i = 0; i < moldNum; i++) {
+            new_molds[i] = new index_file_mold(i%canvasSize,i%canvasSize,  90 , p , canvasSize);
+        }
+    };
+
+	p.draw = () => {
+	    p.background(0,5);
+	    p.loadPixels();
 	
+	    for (let i = 0; i < moldNum; i++) {
+	        new_molds[i].display();
+	        new_molds[i].update();
+	    }
+	};
+
+
+	// Called whenever the mouse is pressed
+	p.mousePressed = () => {
+	    // Check if the mouse is inside the canvas
+	    if (p.mouseX >= 0 && p.mouseX <= p.width && p.mouseY >= 0 && p.mouseY <= p.height) {
+	        p.fill(255, 0, 0);
+	        p.ellipse(p.mouseX, p.mouseY, 200, 200); // Draw a red circle where clicked
+	    }
+	};
+
 };
 
 new p5(sketch_mold);

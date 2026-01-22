@@ -1,3 +1,4 @@
+
 class mold {
     constructor (startingPosX,startingPosY, canvasSize , moldColor, ringDensity , shearing) {
         this.x = startingPosX;
