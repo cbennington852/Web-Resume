@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between bubbles */
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px 16px;
+  font-size: 15px;
+  line-height: 1.4;
+  position: relative;
+  word-wrap: break-word;
+}
+
+/* Received Message Styling */
+.received {
+  align-self: flex-start;
+  background-color: #e9e9eb;
+  color: black;
+  border-radius: 18px 18px 18px 4px; /* Flattens the bottom-left corner */
+}
+
+/* Sent Message Styling (iMessage Blue) */
+.sent {
+  align-self: flex-end;
+  background-color: #007aff;
+  color: white;
+  border-radius: 18px 18px 4px 18px; /* Flattens the bottom-right corner */
+}
+
+/* Optional: Grouping logic */
+/* If two "sent" messages are together, you can reduce the gap or change radii */
+.sent + .sent {
+  margin-top: -4px;
+}
+</style>
+<main>
+<div class="chat-container">
+  <div class="message received">
+    Hey! How's the coding going?
+  </div>
+  
+  <div class="message sent">
+    It's going well! Just working on a cool chat UI.
+  </div>
+  
+  <div class="message sent">
+    What do you think of these bubbles?
+  </div>
+  
+  <div class="message received">
+    They look super clean. Very Apple-esque! 🍎
+  </div>
+</div>
+</main>
+</body>
+</html>
+
+
