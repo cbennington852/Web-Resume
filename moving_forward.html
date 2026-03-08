@@ -1,0 +1,286 @@
+<!--
+   Charles Bennington
+   CPSC 322-01
+   HW3
+   9/14/2024
+   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Charles Bennington</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    #githubContact {
+    text-decoration: none;
+    color: #ff006a;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+#githubContact:hover {
+    text-decoration: none;
+    color: #ff006a;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #ff006a; /* Add a border on hover */
+
+}
+
+header h1 {
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 45px;
+    line-height: 25px;
+    border-radius: 4px;
+    font-family: "Century Gothic", serif;
+
+}
+
+h1 {
+    color: whitesmoke;
+    display: block;
+
+    font-size: 40px;
+
+}
+
+h1 span:hover {
+    color: #ff006a;
+    text-size-adjust: 110%;
+}
+
+
+#researchLink {
+    text-decoration: none;
+    color: #016612;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+#researchLink:hover {
+    text-decoration: none;
+    color: #016612;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #016612; /* Add a border on hover */
+
+}
+
+#linkedInContact {
+    text-decoration: none;
+    color: #0e76a8;
+    font-size: 150%;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+#linkedInContact:hover {
+    text-decoration: none;
+    color: #0e76a8;
+    font-size: 160%; /* Slightly increase font size on hover */
+    font-weight: bold;
+    border: 2px solid #0e76a8; /* Add a border on hover */
+
+}
+    :root {
+        --bg-color: #121212;
+        --section-bg: #1e1e1e;
+        --text-primary: #e0e0e0;
+        --text-secondary: #aaaaaa;
+        --primary-color: #66b3ff;
+        --border-color: #333333;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 15px; /* Reduced for mobile */
+    }
+
+    section {
+        background: var(--section-bg);
+        padding: 20px; /* Reduced for mobile */
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1.3rem; /* Slightly smaller for mobile scaling */
+        margin-top: 0;
+    }
+
+    h3 {
+        color: #888;
+        margin-top: 20px;
+        font-variant: small-caps;
+        font-size: 1.1rem;
+    }
+
+    .publication {
+        margin-bottom: 20px;
+        padding-left: 12px;
+        border-left: 3px solid var(--border-color);
+    }
+
+    .publication strong {
+        color: #ffffff;
+    }
+
+    .pub-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 0; /* Larger touch target for mobile */
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    .hero-img {
+        display: block;
+        max-width: 150px; /* Scaled down for mobile */
+        height: auto;
+        margin: 15px 0;
+        border-radius: 4px;
+        background-color: white;
+        padding: 5px;
+    }
+
+    /* --- MOBILE RESPONSIVE TWEAKS --- */
+    @media (min-width: 600px) {
+        main {
+            padding: 40px 20px;
+        }
+        section {
+            padding: 35px;
+        }
+        h2 {
+            font-size: 1.6rem;
+        }
+        .hero-img {
+            max-width: 200px;
+        }
+    }
+</style>
+
+
+<!--Top Bar-->
+<section>
+    <table>
+        <tr>
+            <td>
+                <a id="top-href" href="index.html">
+                    <h1>
+                        Charles Bennington
+                    </h1>
+                </a>
+            </td>
+            <td>
+                <div id="header-right">
+                    <nav>
+                        <a id="linkedInContact" href="https://www.linkedin.com/in/charles-bennington-a0773a331/"
+                            target="_blank" style="">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a id="githubContact" class="github" href="https://github.com/cbennington852"
+                            target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a id="researchLink" class="researchLink" href="/reasearch.html"
+                            target="_blank">
+                            <i class="fab fa-researchLink"></i> Research
+                        </a>
+                    </nav>
+                </div>
+            </td>
+        </tr>
+    </table>
+</section>
+
+
+
+
+
+<main>
+    <section>
+        <h2>Future Plans</h2>
+        <img src="./u_idaho.png" alt="University of Idaho Logo" class="hero-img">
+        <img class="center" src="poster_charles.png" width="60%" alt="Image of Charles">
+        <p>I will be pursuing a PhD in Computer Science at the <strong>University of Idaho</strong> starting in the Fall of 2026. My research focuses on Human-Computer Interaction and educational software.</p>
+        <p style="font-style: italic; color: var(--text-secondary); margin-top: 15px;">
+            Thank you all for your support and guidance throughout this journey!
+        </p>
+    </section>
+
+    <section>
+        <h2>Publications & Research</h2>
+
+        <h3>Peer-Reviewed Papers</h3>
+        <div class="publication">
+            <p>
+                Olivares, D., Bennington, C., & Skillestad, A. (2025). <strong>Large Language Models in Programming: A Meta-Analysis of Tools, Users, and Human-Computer Interaction Themes.</strong> 
+                <br><em>Published at AHFE International 2026.</em>
+            </p>
+            <a class="pub-link" href="https://openaccess.cms-conferences.org/publications/book/978-1-964867-75-5/article/978-1-964867-75-5_122">VIEW PUBLICATION →</a>
+        </div>
+
+        <h3>Conference Posters</h3>
+        <div class="publication">
+            <p>
+                Bennington, C., Russel, M., & DeWitt, W. (2025). <strong>Use of AlphaFold3 to predict single point mutations in anti-bodies.</strong> 
+                <br>UW Genomics REU showcase, Seattle, WA.
+            </p>
+            <a class="pub-link" href="https://www.charlesbennington.com/af3_poster_dewitt.pdf">VIEW POSTER (PDF) →</a>
+        </div>
+
+        <div class="publication">
+            <p>
+                Bennington, C. & Olivares, D. (2025). <strong>VS Code as Community: The Coding Social Hub for Peer Engagement and Collaboration.</strong> 
+                <br>SIRC, Spokane, WA.
+            </p>
+            <a class="pub-link" href="https://charlesbennington.com/SIRC2025Poster.pdf">VIEW POSTER (PDF) →</a>
+        </div>
+    </section>
+
+    <section>   
+        <h2>Current Research</h2>
+        <p>I am currently working on a project called DataFlippers. DataFlippers enables novices to Learn machine 
+            learning and data science through intuitive drag and drop blocks! I am planning on submitting my work to the Journal of open source software (JOSS) around may. </p>
+        <p><u>Links</u></p>
+        <ul>
+            <li><a class="pub-link" href="./paper.pdf">The Draft Paper →</a></li>
+            <li><a class="pub-link" href="https://github.com/cbennington852/DataScratch">Link to the GitHub →</a></li>
+            <li><a class="pub-link" href="https://cbennington852.github.io/DataScratch/">DataFlippers main page →</a></li>
+
+
+        </ul>
+    
+    </section>
+</main>
+
+
+</body>
+
+</html>
