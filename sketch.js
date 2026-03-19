@@ -28,14 +28,14 @@ class index_file_mold {
 		}
 
 		update () {
-			const width = this.p.floor(this.p.width);
-			const height = this.p.floor(this.p.height);
+			const my_width = this.p.floor(this.p.width);
+			const my_height = this.p.floor(this.p.height);
 
 			this.vx = this.p.cos(this.heading);
 			this.vy = this.p.sin(this.heading);
 
-			this.x = (this.x + this.vx) % width;
-			this.y = (this.y + this.vy) % height;
+			this.x = (this.x + this.vx) % my_width;
+			this.y = (this.y + this.vy) % my_height;
 
 			if (this.x <= 0 ){
 				this.x = this.canvasSize;
@@ -56,28 +56,24 @@ class index_file_mold {
 
 			const getPixelValue = (v) => {
 				// 1. Constrain to canvas bounds so we don't go out of array range
-				let x = this.p.constrain(this.p.floor(v.x), 0, width - 1);
-				let y = this.p.constrain(this.p.floor(v.y), 0, height - 1);
+				let x = this.p.constrain(this.p.floor(v.x), 0, my_width - 1);
+				let y = this.p.constrain(this.p.floor(v.y), 0, my_height - 1);
 				
 				// 2. Calculate index and ensure it is an INTEGER using Math.floor or | 0
-				let index = 4 * (d * y * d * width + d * x);
+				let index = 4 * (d * y * d * my_width + d * x);
 				index = Math.floor(index); 
 				
 				// Return the Red channel (pixels[index])
 				return this.p.pixels[index];
 			};
 
-			let index,l,f,r = 0;
-			let index_r = 0;
-			let index_f = 0;
-			let index_l = 0;
+			let index,l,f,r = 0;		
 			r = getPixelValue(this.rSensorPos);
 			f = getPixelValue(this.fSensorPos);
 			l = getPixelValue(this.lSensorPos);
 
 
 			console.log("Curr" , r , f , l);
-			console.log("LFR" , index_r , index_f , index_l);
 
 			this.colorF = (f + this.color)%255;
 			this.colorR = (this.r)%255;
