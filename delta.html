@@ -1,416 +1,667 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Delta Green : Code Red</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Red_triangle_with_thick_white_border.svg/405px-Red_triangle_with_thick_white_border.svg.png?20111012024718">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Red_triangle_with_thick_white_border.svg/405px-Red_triangle_with_thick_white_border.svg.png?20111012024718">
     <link rel="stylesheet" href="dg_styles.css">
 </head>
+<style>
+    :root {
+        --bg-dark: #1a1a1a;
+        --card-bg: #2d2d2d;
+        --border-color: #444;
+        --text-main: #e0e0e0;
+        --accent: #8b0000;
+        /* Delta Green Red */
+        --success: #2e7d32;
+    }
 
-    <script defer src="clouds-thin.js"></script>
+    .mission-container {
+        font-family: 'Courier New', Courier, monospace;
+        max-width: 800px;
+        margin: 20px auto;
+        color: var(--text-main);
+    }
+
+    /* The Card Wrapper */
+    .mission-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        margin-bottom: 10px;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+    }
+
+    .mission-card:hover {
+        border-color: var(--accent);
+    }
+
+    /* The "Row" Header */
+    summary {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mission-name {
+        font-size: 1.1rem;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 2px;
+        font-size: 0.8rem;
+        background-color: var(--success);
+    }
+
+    /* The Expanded Content */
+    .mission-content {
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .content-block {
+        margin-bottom: 10px;
+    }
+
+    .label {
+        display: block;
+        font-size: 0.7rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+
+    .full-width {
+        grid-column: span 2;
+    }
+</style>
+<script defer src="clouds-thin.js"></script>
+
 <body>
-<section>
-    <h1>Delta Green : Code Red</h1>
-    <div style="float: left; " id="canvas-roseCanvas"></div>
-</section>
-<section>
-    <p>Delta Green is a covert group inside the United States
-federal government. Its mission is to investigate,
-contain, and conceal unnatural events, because the
-unnatural is real and it kills. The world of Delta Green
-is like our own, but beyond the edges of reality are
-powers that outstrip the human mind’s capacity for
-understanding. Sometimes those powers bleed through
+    <section>
+        <h1>Delta Green : Code Red</h1>
+        <div style="float: left; " id="canvas-roseCanvas"></div>
+    </section>
+    <section>
+        <p>Delta Green is a covert group inside the United States
+            federal government. Its mission is to investigate,
+            contain, and conceal unnatural events, because the
+            unnatural is real and it kills. The world of Delta Green
+            is like our own, but beyond the edges of reality are
+            powers that outstrip the human mind’s capacity for
+            understanding. Sometimes those powers bleed through
 
-into our world and destroy every-
-thing they touch.</p>
-</section>
+            into our world and destroy every-
+            thing they touch.</p>
+    </section>
 
-<section>
-    <details>
-        <summary>
-            <img src="red_sheet.webp" width="15px">
-            Rules and Character Sheets 
-        </summary>
-        <ul>
-            <li>
-                 <p><a href="https://drive.google.com/file/d/1W9C5KGsTEMV-eJ3NJrSMtyKMdkrzk6hQ/view?usp=sharing">Rule Book</a></p>
-
-            </li>
-            <li>
-             <p><a href="https://www.theredactedfiles.com/?page_id=2607">Pregen Characters</a></p>
-            </li>
-        </ul>
-       
-    </details>
-    
-
-    <details>
-        <summary>
-        <img src="red_upgrade.png" width="15px">
-        Classes and Upgrades
-        </summary>
+    <section>
         <details>
-        <summary><p>Gunslinger</p></summary>
+            <summary>
+                <img src="red_sheet.webp" width="15px">
+                Rules and Character Sheets
+            </summary>
             <ul>
-                <li><span class="level">1 (Quick-draw):</span> Drawing a gun no longer costs an action, you automatically win a quickdraw.</li>
-                <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
-                <li><span class="level">3 (Trained-shooter):</span> +10% to aimed bonus (Now +30%)</li>
-                <li><span class="level">4 (Duck and Cover):</span> +10% to the bonus from cover </li>
-                <li><span class="level">5 (Rapid fire):</span> Temporarily convert a single shot to automatic fire. Once per combat</li>
+                <li>
+                    <p><a href="https://drive.google.com/file/d/1W9C5KGsTEMV-eJ3NJrSMtyKMdkrzk6hQ/view?usp=sharing">Rule
+                            Book</a></p>
+
+                </li>
+                <li>
+                    <p><a href="https://www.theredactedfiles.com/?page_id=2607">Pregen Characters</a></p>
+                </li>
             </ul>
         </details>
 
+
         <details>
-            <summary><p>The Prepper</p></summary>
-            <ul>
-                <li><span class="level">1 (Tinker):</span> Artillery, Demolitions, and Heavy Weapons rolls can be replaced with INT rolls</li>
-                <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
-                <li><span class="level">3 (Inside buyers):</span> Weapons purchases are processed at one level cheaper. Ex: Unusual → Standard</li>
-                <li><span class="level">4 (Illicit Purchase):</span> Restricted weapons are no longer restricted and can be manufactured at home.</li>
-                <li><span class="level">5 (Custom Job):</span> Creation of a custom weapon, Major Expense or below</li>
-            </ul>
+            <summary>
+                <img src="red_upgrade.png" width="15px">
+                Classes and Upgrades
+            </summary>
+            <details>
+                <summary>
+                    <p>Gunslinger</p>
+                </summary>
+                <ul>
+                    <li><span class="level">1 (Quick-draw):</span> Drawing a gun no longer costs an action, you
+                        automatically win a quickdraw.</li>
+                    <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON,
+                        DEX...</li>
+                    <li><span class="level">3 (Trained-shooter):</span> +10% to aimed bonus (Now +30%)</li>
+                    <li><span class="level">4 (Duck and Cover):</span> +10% to the bonus from cover </li>
+                    <li><span class="level">5 (Rapid fire):</span> Temporarily convert a single shot to automatic fire.
+                        Once per combat</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <p>The Prepper</p>
+                </summary>
+                <ul>
+                    <li><span class="level">1 (Tinker):</span> Artillery, Demolitions, and Heavy Weapons rolls can be
+                        replaced with INT rolls</li>
+                    <li><span class="level">2 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON,
+                        DEX...</li>
+                    <li><span class="level">3 (Inside buyers):</span> Weapons purchases are processed at one level
+                        cheaper. Ex: Unusual → Standard</li>
+                    <li><span class="level">4 (Illicit Purchase):</span> Restricted weapons are no longer restricted and
+                        can be manufactured at home.</li>
+                    <li><span class="level">5 (Custom Job):</span> Creation of a custom weapon, Major Expense or below
+                    </li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <p>Survivalist</p>
+                </summary>
+                <ul>
+                    <li><span class="level">1 (Mean Right Hook):</span> Melee attack rolls can be replaced by strength
+                    </li>
+                    <li><span class="level">2 (Menace):</span> Unarmed damage is 1d6 (previously 1d4). If you
+                        successfully block a unarmed defense you get to counterattack. </li>
+                    <li><span class="level">3 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON,
+                        DEX...</li>
+                    <li><span class="level">4 (Thug it out):</span> Reduce all incoming damage by two. EX: 5dp -> 4dp
+                    </li>
+                    <li><span class="level">5 (Absolute-Unit):</span> Once per session, when taking damage greater than
+                        a d4, reduce that damage to a d4</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <p>Lucky</p>
+                </summary>
+                <ul>
+                    <li><span class="level">1 (Band AID boo bo):</span>+15% to First AID</li>
+                    <li><span class="level">2 (Spray and Pray):</span> +10% to hit when using an automatic weapon.</li>
+                    <li><span class="level">3 (How am I alive?):</span> Once a session, if your health is reduced to
+                        below zero change it to a 1.</li>
+                    <li><span class="level">4 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON,
+                        DEX...</li>
+                    <li><span class="level">5 (Grazed me):</span> Downgrade a critical failure to a normal failure. Once
+                        a session</li>
+                </ul>
+            </details>
+
+
         </details>
 
         <details>
-            <summary><p>Survivalist</p></summary>
+            <summary>
+                <img src="red_icon.png" width="15px">
+                Personnel Files
+            </summary>
             <ul>
-                <li><span class="level">1 (Mean Right Hook):</span> Melee attack rolls can be replaced by strength</li>
-                <li><span class="level">2 (Menace):</span> Unarmed damage is 1d6 (previously 1d4). If you successfully block a unarmed defense you get to counterattack. </li>
-                <li><span class="level">3 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
-                <li><span class="level">4 (Thug it out):</span> Reduce all incoming damage by two. EX: 5dp -> 4dp</li>
-                <li><span class="level">5 (Absolute-Unit):</span> Once per session, when taking damage greater than a d4, reduce that damage to a d4</li>
+                <li>
+                    <p><a href="./charSheets/Agent_P.pdf">Agent P</a></p>
+                </li>
+                <li>
+                    <p><a href="./charSheets/Agent_blob.pdf">Agent Blob</a></p>
+                </li>
+                <li>
+                    <p><a href="./charSheets/Agent_lomen.pdf">Agent Lomen</a></p>
+                </li>
+                <li>
+                    <p><a href="./charSheets/Agent_Sage.pdf">Agent Sage</a></p>
+                </li>
             </ul>
+
         </details>
 
         <details>
-            <summary><p>Lucky</p></summary>
+            <summary>
+                <img src="red_home.png" width="15px">
+                Home Life Options
+            </summary>
+            <p>Throughout the day, the normal adult tends to have this thing called "free time". Typically they spend
+                this time doing fun or relaxing things. Not you. As a secret agent you spend this time preparing for the
+                next mission. </p>
             <ul>
-                <li><span class="level">1 (Band AID boo bo):</span>+15% to First AID</li>
-                <li><span class="level">2 (Spray and Pray):</span> +10% to hit when using an automatic weapon.</li>
-                <li><span class="level">3 (How am I alive?):</span> Once a session, if your health is reduced to below zero change it to a 1.</li>
-                <li><span class="level">4 (Stat - buff):</span> +10% (2 pts) to any base stat. Example STR, CON, DEX...</li>
-                <li><span class="level">5 (Grazed me):</span> Downgrade a critical failure to a normal failure. Once a session</li>
+                <li><b>Stay on the case: </b>
+                    <p>Your agent remains on the case, researching unknown objects they have collected at the expense of
+                        their own sanity. </p>
+                </li>
+                <li><b>Learn a new Skill: </b> Increase your skill in an area, roll INT, on a success Add 1d10+2 on a
+                    failure add 1d6<p></p>
+                </li>
+                <li><b>Restore Sanity: </b>
+                    <p> Conduct some sort of sanity regaining activity. Roll Sanity, on success gain 1d10, on failure
+                        gain 1d4 sanity</p>
+                </li>
+                <li>
+                    <p><b>Purchase Items : </b> Your Character purchases things, and items. (Look at rulebook page 88)
+                    </p>
+                </li>
             </ul>
+
         </details>
+    </section>
 
-            
-    </details>
-    
-    <details>
-        <summary>
-        <img src="red_icon.png" width="15px">
-        Personnel Files
-        </summary>
-        <ul>
-            <li><p><a href="./charSheets/Agent_P.pdf">Agent P</a></p></li>
-            <li><p><a href="./charSheets/Agent_blob.pdf">Agent Blob</a></p></li>
-            <li><p><a href="./charSheets/Agent_lomen.pdf">Agent Lomen</a></p></li>
-            <li><p><a href="./charSheets/Agent_Sage.pdf">Agent Sage</a></p></li>
-        </ul>
-            
-    </details>
 
-     <details>
-        <summary>
-        <img src="red_home.png" width="15px">
-        Home Life Options
-        </summary>
-        <p>Throughout the day, the normal adult tends to have this thing called "free time". Typically they spend this time doing fun or relaxing things. Not you. As a secret agent you spend this time preparing for the next mission. </p>
-        <ul>
-            <li><b>Stay on the case: </b> <p>Your agent remains on the case, researching unknown objects they have collected at the expense of their own sanity. </p></li>
-            <li><b>Learn a new Skill: </b> Increase your skill in an area, roll INT, on a success Add 1d10+2 on a failure add 1d6<p></p></li>
-            <li><b>Restore Sanity: </b><p> Conduct some sort of sanity regaining activity. Roll Sanity, on success gain 1d10, on failure gain 1d4 sanity</p></li>
-            <li><p><b>Purchase Items : </b> Your Character purchases things, and items. (Look at rulebook page 88)</p></li>
-        </ul>
-            
-    </details>
-</section>
+    <section>
+        <details class="mission-card">
+            <summary class="mission-summary">
+                <span class="mission-name">First Things Last</span>
+                <span class="status-badge">SUCCESS</span>
+            </summary>
 
-<section>
-    <table>
-    <caption>Mission Reports :: The Monster Drinkers</caption>
-    <thead>
-        <tr>
-            <th>Mission Name</th>
-            <th>Description</th>
-            <th>Summary</th>
-            <th>Casualties</th>
-            <th>Result</th>
-        </tr>
-    </thead>
-    <tbody>
-            <td > 
-                First things Last
-            </td>
-            <td>
-                Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any evidence of the
-                the unnatural and delta green.
-            </td>
-            <td>
-                Mission success, items contained, threats eliminated 
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--success)">
-                Success
-            </td>
-        
-        <tr>
-            <td >
-                Lost in the "woods"
-            </td>
-            <td>
-                A young child is found wandering through the woods. Face id's match them to a missing child case... from 45 years ago
-            </td>
-            <td>
-                Brandon Recovered. Beer consumed. Medium conspiracy required. Park Rangers eviscerated. 
-            </td>
-            <td>
-                3 
-            </td>
-            <td style="background-color: var(--resolved)">
-                Resolved
-            </td>
-        </tr>
-        
-        <!--http://fairfieldproject.wikidot.com/under-new-management-->
-        <tr>
-            <td >
-                Cotton's catastrophe
-            </td>
-            <td>
-                Late night call, 1am. Another group of agents is in trouble. Get there as fast as possible. Recover the briefcase, eliminate all unnatural. 
-            </td>
-            <td>
-                Briefcase in agent hands. Building rigged to blow. Epstein giant killed. Agent GPS tracker signal lost.  
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--resolved)">
-               Resolved
-            </td>
-        </tr>
+            <div class="mission-content">
+                <div class="content-block full-width">
+                    <span class="label">Description</span>
+                    <p>Delta Green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the unnatural and Delta Green.</p>
+                </div>
 
-        <tr>
-            <td>
-                Red Nest
-            </td>
-            <td>
-                Agents investigate the underground structure they found previously. Recover the briefcase and agent cotton. 
-            </td>
-            <td>
-                Agent Cotton survived(somehow). Children rescued from "the diddy cave". Gooners slain. Building destroyed. briefcase recovered.
-            </td>
-            <td>
-                5
-            </td>
-            <td style="background-color: var(--success)">
-                Success
-            </td>
-        </tr>
-        <tr>
-            <td >
-                Red Alert
-            </td>
-            <td>
-                A boring simple mission, to rest and relax after the hectic last missions. 
-                Retrieve a box from storage, and then transport it to the location. 
-            </td>
-            <td>
-               Players prevented assassination attempt on the handlers life. Improvised brain surgery performed. Bears intimidated.   
-                
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--resolved)">
-               Resolved
-            </td>
-        </tr>
-        <tr>
-            <td >
-                Doomscrolling
-            </td>
-            <td>
-                A suspected Wizard was flagged to have boarded a  Metro Bus(east bound Division 25 stop 3 @ 1:23 am). Bring him in alive. 
-            </td>
-            <td>
-               Wizard recovered alive. Bus destroyed. Ad's endured. 
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--success)">
-               Successful
-            </td>
-        </tr>
-        <tr>
-            <td >
-                The bird mission
-            </td>
-            <td>
-                A delta green friendly, Professor Parsons was killed yesterday at his workplace (Oregon state university). His research was primarily into birds. Contain the unnatural.
-            </td>
-            <td>
-               Aviary destroyed. Birds charred. Civilians killed. Agent John accidentally hotboxed himself.
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--resolved)">
-               Resolved
-            </td>
-        </tr>
-         <tr>
-            <td>
-               Going shopping  
-            </td>
-            <td>
-                Agents are tasked with getting agent cotton a haircut at the barbershop and converting a metal box into MP4 format.
-            </td>
-            <td>
-               North Korean APC acquired. Haircut successful. Agent Schnitzel was chewed on
-            </td>
-            <td>
-                4
-            </td>
-            <td style="background-color: var(--success)">
-               Successful
-            </td>
-        </tr>
-        <tr>
-            <td>
-               Red Rat
-            </td>
-            <td>
-                The Handler has located the traitor that exposed his location in a previous mission (Red Alert). Considered armed an extremely dangerous.  Hunt the traitor down and eliminate him.
-            </td>
-            <td>
-               Traitor killed. Passenger ferry transported to unknown dimension. Over 85 innocent civilians killed or maimed. And unknown number of civilians trapped in unknown dimension. Train destroyed.
-            </td>
-            <td>
-                85
-            </td>
-            <td style="background-color: var(--failure)">
-               Critical Failure
-            </td>
-        </tr>
-    </tbody>
-      
-</table>
-</section>
+                <div class="content-block">
+                    <span class="label">Summary</span>
+                    <p>Mission success, items contained, threats eliminated.</p>
+                </div>
 
-<section>
-    <table>
-    <caption>Mission Reports :: Team Ramen </caption>
-    <thead>
-        <tr>
-            <th>Mission Name</th>
-            <th>Description</th>
-            <th>Result</th>
-            <th>Casualties</th>
-            <th>Result</th>
-        </tr>
-    </thead>
-    <tbody>
-        
-        <tr>
-            <td >
-                
-                First things Last
-            </td>
-            <td>
-                Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any evidence of the
-                the unnatural and delta green.
-            </td>
-            <td>
-                Mission success, items contained, threats eliminated 
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--success)">
-                Success
-            </td>
-        </tr>
-        <tr>
-            <td >
-                Mayday , mayday
-            </td>
-            <td>
-                A young child is found wandering through the woods. Face id's match them to a missing child case... from 45 years ago
-            </td>
-            <td>
-                 Rangers killed, Child recovered
-            </td>
-            <td>
-                3 
-            </td>
-            <td style="background-color: var(--resolved)">
-                Resolved
-            </td>
-        </tr>
-        <tr>
-            <td >
-                Train to no-where
-            </td>
-            <td>
-                Late night call. A suspected Wizard was flagged to have boarded a train(east bound Epharata - > Spokane 1:23 am). 
-                Eliminate all un-natural. 
-            </td>
-            <td>
-                Wizard Killed via direct trauma to testicles. All passengers killed. Train was transported to unknown location. 
-            </td>
-            <td>
-                6
-               
-            </td>
-            <td style="background-color: var(--resolved)">
-                Resolved
-            </td>
-        </tr>
-        <tr>
-            <td >
-                A murder in red
-            </td>
-            <td>
-                Crows have killed a delta green friendly; an surveyance researcher at oregon state university, agents dispatched to investigate. caution advised. 
-            </td>
-            <td>
-                Anomaly unconfined. Agent blob was banned from oregon state university. 
-            <td>
-               5
-            </td>
-            <td style="background-color: var(--failure)">
-                Critical failure
-            </td>
-        </tr>
-       
-        <tr>
-            
-            <td >
-                New management
-            </td>
-            <td>
-                Late night call, 1am. Another group of agents is in trouble. Get there as fast as possible. Recover the agents, eliminate all unnatural. 
-            </td>
-            </td>
-            <td>
-                One of the agents was recovered...
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--critical)">
-                Critical
-            </td>
-        </tr>
-        <!--
+                <div class="content-block">
+                    <span class="label">Casualties</span>
+                    <p>1</p>
+                </div>
+            </div>
+        </details>
+        <details class="mission-card">
+            <summary class="mission-summary">
+                <span class="mission-name">First Things Last</span>
+                <span class="status-badge">SUCCESS</span>
+            </summary>
+
+            <div class="mission-content">
+                <div class="content-block full-width">
+                    <span class="label">Description</span>
+                    <p>Delta Green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the unnatural and Delta Green.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Summary</span>
+                    <p>Mission success, items contained, threats eliminated.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Casualties</span>
+                    <p>1</p>
+                </div>
+            </div>
+        </details>
+        <details class="mission-card">
+            <summary class="mission-summary">
+                <span class="mission-name">First Things Last</span>
+                <span class="status-badge">SUCCESS</span>
+            </summary>
+
+            <div class="mission-content">
+                <div class="content-block full-width">
+                    <span class="label">Description</span>
+                    <p>Delta Green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the unnatural and Delta Green.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Summary</span>
+                    <p>Mission success, items contained, threats eliminated.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Casualties</span>
+                    <p>1</p>
+                </div>
+            </div>
+        </details>
+        <details class="mission-card">
+            <summary class="mission-summary">
+                <span class="mission-name">First Things Last</span>
+                <span class="status-badge">SUCCESS</span>
+            </summary>
+
+            <div class="mission-content">
+                <div class="content-block full-width">
+                    <span class="label">Description</span>
+                    <p>Delta Green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the unnatural and Delta Green.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Summary</span>
+                    <p>Mission success, items contained, threats eliminated.</p>
+                </div>
+
+                <div class="content-block">
+                    <span class="label">Casualties</span>
+                    <p>1</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <section id="mission_reports">
+        <table>
+            <caption>Mission Reports :: The Monster Drinkers</caption>
+            <thead>
+                <tr>
+                    <th>Mission Name</th>
+                    <th>Description</th>
+                    <th>Summary</th>
+                    <th>Casualties</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>
+                    First things Last
+                </td>
+                <td>
+                    Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                    evidence of the
+                    the unnatural and delta green.
+                </td>
+                <td>
+                    Mission success, items contained, threats eliminated
+                </td>
+                <td>
+                    1
+                </td>
+                <td style="background-color: var(--success)">
+                    Success
+                </td>
+                <tr>
+                    <td>
+                        Lost in the "woods"
+                    </td>
+                    <td>
+                        A young child is found wandering through the woods. Face id's match them to a missing child
+                        case... from 45 years ago
+                    </td>
+                    <td>
+                        Brandon Recovered. Beer consumed. Medium conspiracy required. Park Rangers eviscerated.
+                    </td>
+                    <td>
+                        3
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+
+                <!--http://fairfieldproject.wikidot.com/under-new-management-->
+                <tr>
+                    <td>
+                        Cotton's catastrophe
+                    </td>
+                    <td>
+                        Late night call, 1am. Another group of agents is in trouble. Get there as fast as possible.
+                        Recover the briefcase, eliminate all unnatural.
+                    </td>
+                    <td>
+                        Briefcase in agent hands. Building rigged to blow. Epstein giant killed. Agent GPS tracker
+                        signal lost.
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Red Nest
+                    </td>
+                    <td>
+                        Agents investigate the underground structure they found previously. Recover the briefcase and
+                        agent cotton.
+                    </td>
+                    <td>
+                        Agent Cotton survived(somehow). Children rescued from "the diddy cave". Gooners slain. Building
+                        destroyed. briefcase recovered.
+                    </td>
+                    <td>
+                        5
+                    </td>
+                    <td style="background-color: var(--success)">
+                        Success
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Red Alert
+                    </td>
+                    <td>
+                        A boring simple mission, to rest and relax after the hectic last missions.
+                        Retrieve a box from storage, and then transport it to the location.
+                    </td>
+                    <td>
+                        Players prevented assassination attempt on the handlers life. Improvised brain surgery
+                        performed. Bears intimidated.
+
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Doomscrolling
+                    </td>
+                    <td>
+                        A suspected Wizard was flagged to have boarded a Metro Bus(east bound Division 25 stop 3 @ 1:23
+                        am). Bring him in alive.
+                    </td>
+                    <td>
+                        Wizard recovered alive. Bus destroyed. Ad's endured.
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--success)">
+                        Successful
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        The bird mission
+                    </td>
+                    <td>
+                        A delta green friendly, Professor Parsons was killed yesterday at his workplace (Oregon state
+                        university). His research was primarily into birds. Contain the unnatural.
+                    </td>
+                    <td>
+                        Aviary destroyed. Birds charred. Civilians killed. Agent John accidentally hotboxed himself.
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Going shopping
+                    </td>
+                    <td>
+                        Agents are tasked with getting agent cotton a haircut at the barbershop and converting a metal
+                        box into MP4 format.
+                    </td>
+                    <td>
+                        North Korean APC acquired. Haircut successful. Agent Schnitzel was chewed on
+                    </td>
+                    <td>
+                        4
+                    </td>
+                    <td style="background-color: var(--success)">
+                        Successful
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Red Rat
+                    </td>
+                    <td>
+                        The Handler has located the traitor that exposed his location in a previous mission (Red Alert).
+                        Considered armed an extremely dangerous. Hunt the traitor down and eliminate him.
+                    </td>
+                    <td>
+                        Traitor killed. Passenger ferry transported to unknown dimension. Over 85 innocent civilians
+                        killed or maimed. And unknown number of civilians trapped in unknown dimension. Train destroyed.
+                    </td>
+                    <td>
+                        85
+                    </td>
+                    <td style="background-color: var(--failure)">
+                        Critical Failure
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+
+    <section>
+        <table>
+            <caption>Mission Reports :: Team Ramen </caption>
+            <thead>
+                <tr>
+                    <th>Mission Name</th>
+                    <th>Description</th>
+                    <th>Result</th>
+                    <th>Casualties</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+
+                        First things Last
+                    </td>
+                    <td>
+                        Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the
+                        the unnatural and delta green.
+                    </td>
+                    <td>
+                        Mission success, items contained, threats eliminated
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--success)">
+                        Success
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Mayday , mayday
+                    </td>
+                    <td>
+                        A young child is found wandering through the woods. Face id's match them to a missing child
+                        case... from 45 years ago
+                    </td>
+                    <td>
+                        Rangers killed, Child recovered
+                    </td>
+                    <td>
+                        3
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Train to no-where
+                    </td>
+                    <td>
+                        Late night call. A suspected Wizard was flagged to have boarded a train(east bound Epharata - >
+                        Spokane 1:23 am).
+                        Eliminate all un-natural.
+                    </td>
+                    <td>
+                        Wizard Killed via direct trauma to testicles. All passengers killed. Train was transported to
+                        unknown location.
+                    </td>
+                    <td>
+                        6
+
+                    </td>
+                    <td style="background-color: var(--resolved)">
+                        Resolved
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A murder in red
+                    </td>
+                    <td>
+                        Crows have killed a delta green friendly; an surveyance researcher at oregon state university,
+                        agents dispatched to investigate. caution advised.
+                    </td>
+                    <td>
+                        Anomaly unconfined. Agent blob was banned from oregon state university.
+                    <td>
+                        5
+                    </td>
+                    <td style="background-color: var(--failure)">
+                        Critical failure
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+                        New management
+                    </td>
+                    <td>
+                        Late night call, 1am. Another group of agents is in trouble. Get there as fast as possible.
+                        Recover the agents, eliminate all unnatural.
+                    </td>
+                    </td>
+                    <td>
+                        One of the agents was recovered...
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--critical)">
+                        Critical
+                    </td>
+                </tr>
+                <!--
         <tr>
             
             <td >
@@ -429,7 +680,7 @@ thing they touch.</p>
                 
             </td>
         </tr> -->
-        <!--
+                <!--
         <tr>
             
             <td >
@@ -448,108 +699,211 @@ thing they touch.</p>
             </td>
         </tr>
         -->
-    </tbody>
-</table>
-</section>
+            </tbody>
+        </table>
+    </section>
 
 
 
 
-<section>
-    <table>
-    <caption>Mission Reports :: Boiling Donut</caption>
-    <thead>
-        <tr>
-            <th>Mission Name</th>
-            <th>Description</th>
-            <th>Summary</th>
-            <th>Casualties</th>
-            <th>Result</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td > 
-                First things Last
-            </td>
-            <td>
-                Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any evidence of the
-                the unnatural and delta green.
-            </td>
-            <td>
-                Mission success, items contained, threats eliminated 
-            </td>
-            <td>
-                1
-            </td>
-            <td style="background-color: var(--success)">
-                Success
-            </td>
-        </tr>
-        <tr>
-            <td>Hospital Incident</td>
-            <td>Agents are called to investigate reports of vampires at the Ohio state hospital.</td>
-            <td>Severe structural damage. Government required to step in and control situation. Several civilian deaths. </td>
-            <td>4</td>
-            <td style="background-color: var(--failure)">Critical Failure</td>
-        </tr>
-        
-        <tr>
-            <td>No refunds</td>
-            <td>Agents investigate a strange amazon package. </td>
-            <td>Agent Pine in critical condition. Building declared to have a gas leak; terrorist and unnatural force neutralized. Cover story used. Target killed. Unnatural presence contained.</td>
-            <td>1</td>
-            <td style="background-color: var(--resolved)">Resolved</td>
-        </tr>
-        <tr>
-            <td>Field Trip</td>
-            <td>Agents investigate reports of a strange humming statue located on MIT campus. </td>
-            <td>Multiple structures destroyed, 150 civilians affected. Anomaly unconfined. Agent W killed. </td>
-            <td>150</td>
-            <td style="background-color: var(--failure)">Critical Failure</td>
-        </tr>
-        <tr>
-            <td>A typical day in New York</td>
-            <td>Agents investigate swarms of rats ripping new yorkers to shreds.</td>
-            <td>Photograph cursed agent, requiring high-level intervention. No public knowledge. Containment successful through internal ops.</td>
-            <td>2</td>
-            <td style="background-color: var(--critical)">Critical</td>
-        </tr>
-         <tr>
-            <td>Pawn E4</td>
-            <td>Bizarre murders, with a jade statue being left as a calling card. </td>
-            <td>Artifact was anomalous and deadly. Contained with minimal exposure. Statue mistaken for jesus.</td>
-            <td>2</td>
-            <td style="background-color: var(--resolved)">Resolved</td>
-        </tr>
-        <tr>
-            <td>Vapour Trails</td>
-            <td>Small town USA, multiple townspeople killed via a large animal. Massive three toes footprints left in the sand.</td>
-            <td>Dinosaurs... agent white has been eaten. Unhealthy amounts of deep fried dinosaur consumed.  </td>
-            <td>2</td>
-            <td style="background-color: var(--success)">Successful</td>
-        </tr>
-        <tr>
-            <td>Do you smell something?</td>
-            <td>A chemical laboratory located in Montana has mysteriously exploded. Officials ruled it a suicide. </td>
-            <td>Investigation into terrorist apartment revealed giant ants. Situation handled without wider exposure. Anomaly neutralized.</td>
-            <td>1</td>
-            <td style="background-color: var(--success)">Successful</td>
-        </tr>
-        <tr>
-            <td>Flesh Town Incident</td>
-            <td>Sibling organization reports town infected with flesh-like growths. Dispatched "special" forces.</td>
-            <td>Growths neutralized. Only one fatality; agent suicide.</td>
-            <td>1</td>
-            <td style="background-color: var(--success)">Successful</td>
-        </tr>
-        <tr>
-            <td>Holy Item Recovery</td>
-            <td>An holy relic was stolen from the vatican. Agents dispatched to recover holy item and hostage. </td>
-            <td> Artifact destroyed. Hostage eliminated. </td>
-            <td>4</td>
-            <td style="background-color: var(--critical)">Critical</td>
-        </tr>
-    </tbody>
-</table>
-</section>
+    <section>
+        <table>
+            <caption>Mission Reports :: Boiling Donut</caption>
+            <thead>
+                <tr>
+                    <th>Mission Name</th>
+                    <th>Description</th>
+                    <th>Summary</th>
+                    <th>Casualties</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        First things Last
+                    </td>
+                    <td>
+                        Delta green friendly died several days ago of a heart attack. Sweep his apartment and remove any
+                        evidence of the
+                        the unnatural and delta green.
+                    </td>
+                    <td>
+                        Mission success, items contained, threats eliminated
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td style="background-color: var(--success)">
+                        Success
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hospital Incident</td>
+                    <td>Agents are called to investigate reports of vampires at the Ohio state hospital.</td>
+                    <td>Severe structural damage. Government required to step in and control situation. Several civilian
+                        deaths. </td>
+                    <td>4</td>
+                    <td style="background-color: var(--failure)">Critical Failure</td>
+                </tr>
+
+                <tr>
+                    <td>No refunds</td>
+                    <td>Agents investigate a strange amazon package. </td>
+                    <td>Agent Pine in critical condition. Building declared to have a gas leak; terrorist and unnatural
+                        force neutralized. Cover story used. Target killed. Unnatural presence contained.</td>
+                    <td>1</td>
+                    <td style="background-color: var(--resolved)">Resolved</td>
+                </tr>
+                <tr>
+                    <td>Field Trip</td>
+                    <td>Agents investigate reports of a strange humming statue located on MIT campus. </td>
+                    <td>Multiple structures destroyed, 150 civilians affected. Anomaly unconfined. Agent W killed. </td>
+                    <td>150</td>
+                    <td style="background-color: var(--failure)">Critical Failure</td>
+                </tr>
+                <tr>
+                    <td>A typical day in New York</td>
+                    <td>Agents investigate swarms of rats ripping new yorkers to shreds.</td>
+                    <td>Photograph cursed agent, requiring high-level intervention. No public knowledge. Containment
+                        successful through internal ops.</td>
+                    <td>2</td>
+                    <td style="background-color: var(--critical)">Critical</td>
+                </tr>
+                <tr>
+                    <td>Pawn E4</td>
+                    <td>Bizarre murders, with a jade statue being left as a calling card. </td>
+                    <td>Artifact was anomalous and deadly. Contained with minimal exposure. Statue mistaken for jesus.
+                    </td>
+                    <td>2</td>
+                    <td style="background-color: var(--resolved)">Resolved</td>
+                </tr>
+                <tr>
+                    <td>Vapour Trails</td>
+                    <td>Small town USA, multiple townspeople killed via a large animal. Massive three toes footprints
+                        left in the sand.</td>
+                    <td>Dinosaurs... agent white has been eaten. Unhealthy amounts of deep fried dinosaur consumed.
+                    </td>
+                    <td>2</td>
+                    <td style="background-color: var(--success)">Successful</td>
+                </tr>
+                <tr>
+                    <td>Do you smell something?</td>
+                    <td>A chemical laboratory located in Montana has mysteriously exploded. Officials ruled it a
+                        suicide. </td>
+                    <td>Investigation into terrorist apartment revealed giant ants. Situation handled without wider
+                        exposure. Anomaly neutralized.</td>
+                    <td>1</td>
+                    <td style="background-color: var(--success)">Successful</td>
+                </tr>
+                <tr>
+                    <td>Flesh Town Incident</td>
+                    <td>Sibling organization reports town infected with flesh-like growths. Dispatched "special" forces.
+                    </td>
+                    <td>Growths neutralized. Only one fatality; agent suicide.</td>
+                    <td>1</td>
+                    <td style="background-color: var(--success)">Successful</td>
+                </tr>
+                <tr>
+                    <td>Holy Item Recovery</td>
+                    <td>An holy relic was stolen from the vatican. Agents dispatched to recover holy item and hostage.
+                    </td>
+                    <td> Artifact destroyed. Hostage eliminated. </td>
+                    <td>4</td>
+                    <td style="background-color: var(--critical)">Critical</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            // name , summary , report , casualties , type.
+            const boiling_donut_missions = [
+                [
+                    "Flesh Town Incident",
+                    "Sibling organization reports town infected with flesh-like growths. Dispatched 'special' forces.",
+                    "Growths neutralized. Only one fatality; agent suicide.",
+                    1,
+                    "Successful"
+                ],
+                [
+                    "Holy Item Recovery",
+                    "An holy relic was stolen from the vatican. Agents dispatched to recover holy item and hostage.",
+                    "Artifact destroyed. Hostage eliminated.",
+                    4,
+                    "Critical"
+                ]
+            ];
+
+            const groups = [
+                ["boiling donut", boiling_donut_missions],
+            ];
+
+            const color_map = {
+                "success" :  #03591a;
+                "resolved" : #17a4bd;
+                "critical : #bdb217;
+                --failure : crimson;
+
+            };
+
+            const missions_container = document.getElementById("mission_reports");
+
+            groups.forEach((group, index) => {
+                const group_name = group[0];
+                var missions_reports = "";
+                const missions = group[1];
+
+                missions.forEach((mission, index) => {
+                    const name = mission[0];
+                    const summary = mission[1];
+                    const report = mission[2];
+                    const casualties = mission[3];
+                    const result = mission[4];
+
+
+
+                    const curr_mission = `
+                        <details class="mission-card">
+                            <summary class="mission-summary">
+                            <span class="mission-name">${name}</span>
+                            <span class="status-badge">${result}</span>
+                            </summary>
+                            
+                            <div class="mission-content">
+                            <div class="content-block full-width">
+                                <span class="label">Description</span>
+                                <p>${summary}</p>
+                            </div>
+
+                            <div class="content-block">
+                                <span class="label">Summary</span>
+                                <p>${report}</p>
+                            </div>
+
+                            <div class="content-block">
+                                <span class="label">Casualties</span>
+                                <p>${casualties}</p>
+                            </div>
+                            </div>
+                        </details>
+                    `;
+                    missions_reports += curr_mission;
+
+                });
+
+
+                const curr_section =   `
+                    <section>
+                        <h2>${group_name}</h2>
+                        ${missions_reports}
+                    </section>
+                `;
+                console.log(curr_section)
+                missions_container.innerHTML = curr_section;
+            });
+
+
+        </script>
+
+
+
+    </section>
