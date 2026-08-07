@@ -13,7 +13,6 @@ let  = 3;
 let shearing = 3;
 
 function preload () {
-    font = loadFont("fonts/Roboto-Regular.ttf");
 
     let controls = document.getElementById('moldControls');
 
@@ -42,10 +41,6 @@ function setup() {
 
     d = pixelDensity();
     //moldControls
-
-    spawnPoints = font.textToPoints("OOO", 0,300, 300, {
-        sampleFactor: 0.1,
-    });
 
     //spawns them in a circle. 
 

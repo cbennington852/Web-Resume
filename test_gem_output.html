@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles Bennington | Ph.D. Student in Computer Science</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+    <script>
+        const min_radius = 50;
+        let blip_radius = min_radius;
+        let moldSpeed = 0.01;
+        const maxMoldSpeed = 0.2;
+        const moldAcceleration = 0.01;
+        const moldSpeedIncreaseInterval = 200;
+        // We could have the mold speed "accelrate" slowly.
+        //Could also have it start with lines. 
+        class mold {
+            constructor(startingPosX, startingPosY, canvas_width, canvas_length, moldColor, ringDensity, size) {
+                this.x = startingPosX;
+                this.size = size
+                this.y = startingPosY;
+                this.r = 0.5;
+                this.color = moldColor;
+                this.ringDensity = ringDensity;
+                this.canvas_width = canvas_width;
+                this.canvas_length = canvas_length;
+                this.heading = random(360);
+                this.vx = cos(this.heading);
+                this.vy = sin(this.heading);
+                this.rotAngle = 45;
+                this.rSensorPos = createVector(0, 0);
+                this.fSensorPos = createVector(0, 0);
+                this.lSensorPos = createVector(0, 0);
+                this.sensorAngle = 45;
+                this.sensorDist = 10;
+                this.colorF = 0;
+                this.colorR = 0;
+                this.colorL = 0;
+            }
+            remakeHeading() {
+                this.heading = random(360);
+                this.vx = cos(this.heading);
+                this.vy = sin(this.heading);
+            }
+            update() {
+                this.vx = cos(this.heading);
+                this.vy = sin(this.heading);
+                this.x = (this.x + (this.vx * moldSpeed));
+                this.y = (this.y + (this.vy * moldSpeed));
+                if (this.x < 0) {
+                    this.x = this.canvas_width;
+                    this.remakeHeading();
+                }
+                else if (this.x > this.canvas_width) {
+                    this.x = 0;
+                    this.remakeHeading();
+                }
+                else {
+                    // do nothing
+                }
+                if (this.y < 0) {
+                    this.y = this.canvas_length;
+                    this.remakeHeading();
+                }
+                else if (this.y > this.canvas_length) {
+                    this.y = 0;
+                    this.remakeHeading();
+                }
+                else {
+                    // do nothing
+                }
+                // see if inside blip radius!!! 
+                if (getDistance(this.x, this.y, mouseX, mouseY) < Math.floor(blip_radius * 0.8)) {
+                    // pick random angle and move to edge? 
+                    this.x = this.x + random(-100, 100);
+                    this.y = this.y + random(-100, 100);
+                }
+                this.rSensorPos.x = this.x + this.sensorDist * cos(this.heading + this.sensorAngle);
+                this.rSensorPos.y = this.y + this.sensorDist * sin(this.heading + this.sensorAngle);
+                this.lSensorPos.x = this.x + this.sensorDist * cos(this.heading - this.sensorAngle);
+                this.lSensorPos.y = this.y + this.sensorDist * sin(this.heading - this.sensorAngle);
+                this.fSensorPos.x = this.x + this.sensorDist * this.vx;
+                this.fSensorPos.y = this.y + this.sensorDist * this.vx;
+                let index, l, r, f;
+                index = 4 * (d * floor(this.rSensorPos.y)) * (d * width) + 4 * (d * floor(this.rSensorPos.x));
+                r = pixels[index];
+                index = 4 * (d * floor(this.fSensorPos.y)) * (d * width) + 4 * (d * floor(this.fSensorPos.x));
+                f = pixels[index];
+                index = 4 * (d * floor(this.lSensorPos.y)) * (d * width) + 4 * (d * floor(this.lSensorPos.x));
+                l = pixels[index];
+                //get distance to other mold, and do stuff?
+                //or get distance from center
+                let xCenter = width / 2;
+                let yCenter = height / 2;
+                const ring_density = 200;
+                const dist_from_blip = getDistance(this.x, this.y, mouseX, mouseY) + blip_radius;
+                //distance from another mold.
+                // this.colorF = (r + l + this.color) % 255;
+                // this.colorR = (f + this.color) % 255;
+                // this.colorL = (l + r + (this.size+10)) % 255;
+                this.colorF = (this.color / (this.size + l + random(0, 30))) % 255;
+                this.colorR = (this.color / (this.size + r)) % 255;
+                this.colorL = (l + r + (this.size * 10)) % 255;
+                const min_size = 3;
+                const max_size = 7;
+                // should be changed to be more interesting. Maybe we could add some centers? 
+                const limit = 10;
+                if ((f > limit) && (l > limit) && (r > limit)) {
+                    this.size = Math.min(max_size, this.size + 3);
+                }
+                else {
+                    this.size = Math.max(this.size - 1, min_size);
+                }
+                if ((f > l) && (f > r)) {
+                    this.heading += 0;
+                }
+                else if (f < l && f < r) {
+                    if (random(1) < 0.5) {
+                        this.heading += this.rotAngle;
+                    }
+                    else {
+                        this.heading -= this.rotAngle;
+                    }
+                }
+                else if (l > r) {
+                    this.heading += -this.rotAngle;
+                }
+                else if (r > l) {
+                    this.heading += this.rotAngle;
+                }
+            }
+            display() {
+                noStroke();
+                fill(255, 170, this.colorR);
+                ellipse(this.x % this.canvas_width, this.y % this.canvas_length, this.r * this.size, this.r * this.size);
+            }
+        }
+        function getDistance(x1, y1, x2, y2) {
+            const xDistance = x2 - x1;
+            const yDistance = y2 - y1;
+            return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+        }
+        let d; let molds = []; let moldNum = 300;
+        const viewportWidth = (window.innerWidth * 0.60);
+        const viewportHeight = (window.innerHeight * 0.20);
+        let points = [];
+        let spawnPoints = [];
+        let moldColor = 50;
+        let ringDensity = 900;
+        let clickType = false;
+        let = 3;
+        let size = 3;
+        const canvas_width = Math.floor(viewportWidth * 0.95);
+        const canvas_length = Math.floor(viewportHeight * 0.95);
+        let myFont;
+        function preload() {
+            myFont = loadFont('arial.ttf');
+        }
+        function setup() {
+            canvas = createCanvas(canvas_width, canvas_length);
+            canvas.style('filter', 'invert(100%)'); // Make it light mode, lol. So lazy
+            document.oncontextmenu = () => false
+            canvas.parent("canvas-container"); // Attach to the div
+            angleMode(DEGREES);
+            d = pixelDensity();
+            text_points = myFont.textToPoints('A w e s o m e  S t u f f !', 0, 0, 70, {
+                sampleFactor: 0.1,
+                simplifyThreshold: 0
+            });
+            let xMin = Infinity, xMax = -Infinity;
+            let yMin = Infinity, yMax = -Infinity;
+            for (let pt of text_points) {
+                if (pt.x < xMin) xMin = pt.x;
+                if (pt.x > xMax) xMax = pt.x;
+                if (pt.y < yMin) yMin = pt.y;
+                if (pt.y > yMax) yMax = pt.y;
+            }
+            let textWidth = xMax - xMin;
+            let textHeight = yMax - yMin;
+            let offsetX = (width - textWidth) / 2 - xMin;
+            let offsetY = (height - textHeight) / 2 - yMin;
+            for (let pt of text_points) {
+                pt.x += offsetX;
+                pt.y += offsetY;
+            }
+            points_index = 0;
+            for (let x = 0; x < ringDensity; x++) {
+                const curr_point = text_points[points_index];
+                console.log(curr_point);
+                fill(256, 0, 0);
+                ellipse(curr_point.x, curr_point.y, 5, 5);
+                molds[x] = new mold(curr_point['x'], curr_point['y'], canvas_width, canvas_length, moldColor, ringDensity, size);
+                points_index = (points_index + 1) % text_points.length;
+            }
+            setInterval(() => {
+                moldSpeed += moldAcceleration;
+                moldSpeed = Math.min(moldSpeed, maxMoldSpeed);
+            }, moldSpeedIncreaseInterval);
+        }
+        function draw() {
+            background(0, 5);
+            loadPixels();
+            make_gradient_circle('#000000', '#000000');
+            for (let i = 0; i < molds.length; i++) {
+                molds[i].display();
+                molds[i].update();
+            }
+            make_gradient_circle('#000000', '#000000');
+        }
+        function make_gradient_circle(c_start, c_end) {
+            let gradient = drawingContext.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, blip_radius);
+            gradient.addColorStop(0, c_start); // Center color
+            gradient.addColorStop(1, c_end); // Outer color
+            drawingContext.fillStyle = gradient;
+            noStroke();
+            circle(mouseX, mouseY, blip_radius * 2);
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --bg: #ffffff;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --max-width: 860px;
+        }
+        /* :root {
+            --primary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --max-width: 860px;
+        } */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .header-text p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        .links {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-top: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .pub-card,
+        .news-item,
+        .teaching-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        .pub-authors .me {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .pub-links {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .pub-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-right: 0.75rem;
+        }
+
+        .pub-links a:hover {
+            text-decoration: underline;
+        }
+
+        .news-date {
+            font-weight: 600;
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<style>
+/* 1. Parent acts as the anchor frame */
+.card-container {
+  position: relative; 
+  width: 300px;
+  height: 200px;
+}
+
+/* 2. Put BOTH items in the exact same spot */
+.layer-back, .layer-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 3. Use z-index to force the stack order */
+.layer-back {
+  z-index: 1; /* Lower number = Back */
+  background: red;
+}
+
+.layer-front {
+  z-index: 2; /* Higher number = Front */
+  background: rgba(0, 0, 255, 0.146);
+}
+
+</style>
+<body>
+
+    <div class="container">
+        <!-- Header / Intro -->
+        <header>
+            <img src="lake_charles.jpg" alt="Charles Bennington" class="profile-img">
+            <div class="header-text">
+                <h1>Charles Bennington</h1>
+                <p>Ph.D. Student in Computer Science</p>
+                <p>University of Idaho &bull; Advised by Prof. John Shovic</p>
+
+                <div class="links">
+                    <a href="https://github.com/cbennington852"><img width="40px;" src="github.png"></a>
+                    <a href="https://www.linkedin.com/in/charles-bennington-a0773a331/"><img width="40px;"
+                            src="LinkedIn_icon.svg.webp"></a>
+                </div>
+            </div>
+        </header>
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div id="canvas-container">
+            </div>
+        </div>
+
+        <!-- Biography -->
+        <section>
+            <h2>About Me</h2>
+            <p>
+                I am a 1st-year Ph.D. student in the Department of Computer Science at the University of Idaho,
+                where I am part of the Center for Intelligent Industrial Robotics (CIIR) Lab. Before coming to UoI, I
+                completed my B.S. in Computer Science
+                at Gonzaga University.
+            </p>
+            <p>
+                My general research focuses on <strong>Speech Emotion Recognition</strong>, <strong>Human Centered
+                    Design</strong>,and <strong>Robotics</strong>.
+                Please check out my GitHub, it has information on my current projects.
+            </p>
+
+            <div class="tag-container">
+                <span class="tag">Speech Emotion Recognition</span>
+                <span class="tag">Human Centered Design</span>
+                <span class="tag">Robotics</span>
+                <span class="tag">AI</span>
+
+            </div>
+        </section>
+
+
+        <!-- Publications -->
+        <section>
+            <h2>Publications</h2>
+            <h3>Peer-Reviewed Papers</h3>
+            <div class="pub-card">
+                <div class="pub-title">Large Language Models in Programming: A Meta-Analysis of Tools, Users, and
+                    Human-Computer Interaction Themes</div>
+                <div class="pub-authors"> Olivares, D.<span class="me">Bennington, C</span>, & Skillestad, A.</div>
+                <div class="pub-venue">AHFE International 2026.</div>
+                <div class="pub-links">
+                    <a
+                        href="https://openaccess.cms-conferences.org/publications/book/978-1-964867-75-5/article/978-1-964867-75-5_122">[Link]</a>
+                </div>
+            </div>
+            <h3>Posters</h3>
+            <div class="pub-card">
+                <div class="pub-title">Use of AlphaFold3 to predict single point mutations in anti-bodies.</div>
+                <div class="pub-authors"><span class="me">Bennington, C.</span>, Russel, M., & DeWitt, W.</div>
+                <div class="pub-venue">UW Genomics REU showcase 2025, Seattle, WA.</div>
+                <div class="pub-links">
+                    <a href="https://www.charlesbennington.com/af3_poster_dewitt.pdf">[Poster PDF]</a>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <div class="pub-title">VS Code as Community: The Coding Social Hub for Peer Engagement and
+                    Collaboration.</div>
+                <div class="pub-authors"><span class="me">Bennington, C.</span> & Olivares, D.</div>
+                <div class="pub-venue">SIRC 2025, Spokane, WA.</div>
+                <div class="pub-links">
+                    <a href="https://charlesbennington.com/SIRC2025Poster.pdf">[Poster PDF]</a>
+                </div>
+            </div>
+            <h3>On Going Projects</h3>
+            <div class="pub-card">
+                <div class="pub-title">DataFlippers: Intuitive Drag-and-Drop Block Programming for Novice Machine
+                    Learning and Data Science</div>
+                <div class="pub-authors"><span class="me">Bennington, C.</span></div>
+                <div class="pub-venue">Targeting Journal of Open Source Software (JOSS) — Expected May 2026</div>
+                <div class="pub-links">
+                    <a href="./paper.pdf">[Draft Paper]</a>
+                    <a href="https://github.com/cbennington852/DataScratch">[GitHub]</a>
+                    <a href="https://cbennington852.github.io/DataFlippers/">[Project Page]</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2026 Charles Bennington. Built with HTML, CSS, Javscript.
+        </footer>
+    </div>
+
+</body>
+
+
+
+
+
+</html>

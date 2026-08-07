@@ -1,6 +1,6 @@
 // Set up canvas
 let canvasSize = Math.floor(window.innerWidth);
-const width = Math.floor(canvasSize / 3);
+const width = Math.floor(window.innerWidth / 3);
 const length = Math.floor(window.innerHeight / 2);
 
 class index_file_mold {

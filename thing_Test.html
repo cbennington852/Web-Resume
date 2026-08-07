@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redline — Mold Simulation (Light Mode)</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #canvas-container canvas {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border-radius: 8px;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+<body>
+<div id="canvas-container"></div>
+<script>
+  const min_radius = 50;
+  let blip_radius = min_radius;
+  let moldSpeed = 0.01;
+  const maxMoldSpeed = 0.2;
+  const moldAcceleration = 0.01;
+  const moldSpeedIncreaseInterval = 200;
+  const backgroundColor = 255; // light background
+
+  class Mold {
+    constructor(startingPosX, startingPosY, canvas_width, canvas_length, moldColor, size) {
+      this.x = startingPosX;
+      this.y = startingPosY;
+      this.size = size;
+      this.r = 0.5;
+      this.color = moldColor;
+      this.canvas_width = canvas_width;
+      this.canvas_length = canvas_length;
+      this.heading = random(360);
+      this.vx = cos(this.heading);
+      this.vy = sin(this.heading);
+      this.rotAngle = 45;
+      this.rSensorPos = createVector(0, 0);
+      this.fSensorPos = createVector(0, 0);
+      this.lSensorPos = createVector(0, 0);
+      this.sensorAngle = 45;
+      this.sensorDist = 10;
+      this.colorF = 0;
+      this.colorR = 0;
+      this.colorL = 0;
+    }
+
+    remakeHeading() {
+      this.heading = random(360);
+      this.vx = cos(this.heading);
+      this.vy = sin(this.heading);
+    }
+
+    clampX(v) { return constrain(floor(v), 0, this.canvas_width - 1); }
+    clampY(v) { return constrain(floor(v), 0, this.canvas_length - 1); }
+
+    sampleAt(x, y) {
+      const cx = this.clampX(x);
+      const cy = this.clampY(y);
+      const index = 4 * (cy * this.canvas_width + cx);
+      return pixels[index] || 0;
+    }
+
+    update() {
+      this.vx = cos(this.heading);
+      this.vy = sin(this.heading);
+      this.x = this.x + this.vx * moldSpeed;
+      this.y = this.y + this.vy * moldSpeed;
+
+      if (this.x < 0) {
+        this.x = this.canvas_width;
+        this.remakeHeading();
+      } else if (this.x > this.canvas_width) {
+        this.x = 0;
+        this.remakeHeading();
+      }
+
+      if (this.y < 0) {
+        this.y = this.canvas_length;
+        this.remakeHeading();
+      } else if (this.y > this.canvas_length) {
+        this.y = 0;
+        this.remakeHeading();
+      }
+
+      // scatter away from the cursor "blip"
+      if (getDistance(this.x, this.y, mouseX, mouseY) < floor(blip_radius * 0.8)) {
+        this.x = this.x + random(-100, 100);
+        this.y = this.y + random(-100, 100);
+      }
+
+      this.rSensorPos.x = this.x + this.sensorDist * cos(this.heading + this.sensorAngle);
+      this.rSensorPos.y = this.y + this.sensorDist * sin(this.heading + this.sensorAngle);
+      this.lSensorPos.x = this.x + this.sensorDist * cos(this.heading - this.sensorAngle);
+      this.lSensorPos.y = this.y + this.sensorDist * sin(this.heading - this.sensorAngle);
+      this.fSensorPos.x = this.x + this.sensorDist * this.vx;
+      this.fSensorPos.y = this.y + this.sensorDist * this.vy; // fixed: was using vx for both axes
+
+      const r = this.sampleAt(this.rSensorPos.x, this.rSensorPos.y);
+      const f = this.sampleAt(this.fSensorPos.x, this.fSensorPos.y);
+      const l = this.sampleAt(this.lSensorPos.x, this.lSensorPos.y);
+
+      this.colorF = (this.color / (this.size + l + random(0, 30))) % 255;
+      this.colorR = (this.color / (this.size + r + 1)) % 255;
+      this.colorL = (l + r + this.size * 10) % 255;
+
+      const min_size = 3;
+      const max_size = 7;
+      const limit = 10;
+      if (f > limit && l > limit && r > limit) {
+        this.size = Math.min(max_size, this.size + 3);
+      } else {
+        this.size = Math.max(this.size - 1, min_size);
+      }
+
+      if (f > l && f > r) {
+        this.heading += 0;
+      } else if (f < l && f < r) {
+        this.heading += random(1) < 0.5 ? this.rotAngle : -this.rotAngle;
+      } else if (l > r) {
+        this.heading += -this.rotAngle;
+      } else if (r > l) {
+        this.heading += this.rotAngle;
+      }
+    }
+
+    display() {
+      noStroke();
+      // saturated color against the light/white background
+      fill(255, this.colorF, this.colorR);
+      ellipse(this.x % this.canvas_width, this.y % this.canvas_length, this.r * this.size, this.r * this.size);
+    }
+  }
+
+  function getDistance(x1, y1, x2, y2) {
+    const xDistance = x2 - x1;
+    const yDistance = y2 - y1;
+    return Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+  }
+
+  // Generates spawn points from rendered text using the browser's own
+  // canvas 2D text rendering, so no external font file is needed.
+  function getTextPoints(str, w, h, fontSize, sampleGap) {
+    const buffer = document.createElement('canvas');
+    buffer.width = w;
+    buffer.height = h;
+    const ctx = buffer.getContext('2d');
+    ctx.fillStyle = '#000000';
+    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(str, w / 2, h / 2);
+    const data = ctx.getImageData(0, 0, w, h).data;
+    const pts = [];
+    for (let y = 0; y < h; y += sampleGap) {
+      for (let x = 0; x < w; x += sampleGap) {
+        const alphaIndex = (y * w + x) * 4 + 3;
+        if (data[alphaIndex] > 128) {
+          pts.push({ x, y });
+        }
+      }
+    }
+    return pts;
+  }
+
+  let molds = [];
+  const ringDensity = 900;
+  let moldColor = 150;
+  let size = 3;
+
+  const viewportWidth = window.innerWidth * 0.8;
+  const viewportHeight = window.innerHeight * 0.6;
+  const canvas_width = Math.floor(viewportWidth * 0.95);
+  const canvas_length = Math.floor(viewportHeight * 0.95);
+
+  function setup() {
+    const c = createCanvas(canvas_width, canvas_length);
+    pixelDensity(1); // keeps pixel-array indexing simple and predictable
+    c.parent('canvas-container');
+    document.oncontextmenu = () => false;
+    angleMode(DEGREES);
+    background(backgroundColor);
+
+    const fontSize = Math.floor(canvas_length * 0.45);
+    const text_points = getTextPoints('R e d l i n e', canvas_width, canvas_length, fontSize, 3);
+
+    let points_index = 0;
+    for (let i = 0; i < ringDensity; i++) {
+      const curr_point = text_points[points_index % text_points.length];
+      molds[i] = new Mold(curr_point.x, curr_point.y, canvas_width, canvas_length, moldColor, size);
+      points_index++;
+    }
+
+    setInterval(() => {
+      moldSpeed = Math.min(moldSpeed + moldAcceleration, maxMoldSpeed);
+    }, moldSpeedIncreaseInterval);
+  }
+
+  function draw() {
+    background(backgroundColor, 5); // slow fade to white, leaves light trails
+    loadPixels();
+    makeGradientCircle('#ffffff', '#ffffff');
+    for (let i = 0; i < molds.length; i++) {
+      molds[i].display();
+      molds[i].update();
+    }
+    makeGradientCircle('#ffffff', '#ffffff');
+  }
+
+  function makeGradientCircle(cStart, cEnd) {
+    const gradient = drawingContext.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, blip_radius);
+    gradient.addColorStop(0, cStart);
+    gradient.addColorStop(1, cEnd);
+    drawingContext.fillStyle = gradient;
+    noStroke();
+    circle(mouseX, mouseY, blip_radius * 2);
+  }
+</script>
+</body>
+</html>
