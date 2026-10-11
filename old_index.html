@@ -1,0 +1,391 @@
+<!--
+   Charles Bennington
+   CPSC 322-01
+   HW3
+   9/14/2024
+   -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="canonical" href="https://{{ site.url }}{{ page.url }}" />
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Charles Bennington</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <script src="sorting.js"></script>
+    <script src="roseSketch.js"></script>
+</head>
+
+<body>
+
+    
+
+    <!--Top Bar-->
+    <header>
+        <table>
+            <tr>
+                <td>
+                    <section>
+                        <a id="top-href" href="index.html">
+                            <h1>
+                                Charles Bennington
+                            </h1>
+                        </a>
+                    </section>
+                </td>
+                <td>
+                    <section>
+                        <div id="header-right">
+                            <nav>
+                                <a id="linkedInContact" href="https://www.linkedin.com/in/charles-bennington-a0773a331/"
+                                    target="_blank" style="">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a id="githubContact" class="github" href="https://github.com/cbennington852"
+                                    target="_blank">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                                <a id="researchLink" class="researchLink" href="/reasearch.html"
+                                    target="_blank">
+                                    <i class="fab fa-researchLink"></i> Research
+                                </a>
+                            </nav>
+                        </div>
+                    </section>
+                </td>
+            </tr>
+        </table>
+    </header>
+
+
+
+    <!--Flexbox layout-->
+    <div id="container">
+        <nav>
+            <!--Buffer for the image, beacuse of the header-->
+            <div style="height: 40px"></div>
+
+            <!--Unordered list looks weird, so it's an -->
+            <!--Unordered list that conatains a single HTML table-->
+            <!--Only one unordered list, so it makes sense to do inline.-->
+            <ul style="list-style-type: none;">
+                <!--Fits requirment, but table looks better-->
+                <li>
+
+                </li>
+            </ul>
+        </nav>
+        <main>
+            
+
+
+            <section id="Career-Summary-Div">
+                <!--"hidden" text, which adds a buffer so the header isn't covering the carrier summary-->
+                <!--No need to make a entry in .css file, will just do inline, margin top for avoiding the header-->
+                <h2 style="margin-top: 60px"> </h2>
+                <img class="center" src="poster_charles.png" height="300px" alt="Image of Charles">
+                <img class="center"
+                <section>
+                    <p>Hi! My name is Charles! I am a PhD student. My current research areas are human centered computing, robotics, and computational biology.</p>
+                </section>
+                <section>
+                    <h2>Skills</h2>
+                    <div class="tag-list">
+                        <div class="loop-slider" style="--duration:25951ms; --direction:normal;">
+                            <div class="inner">
+                                <div class="tag"><img src="JS-icon.png" alt="JS ICON"><span>#</span> JavaScript</div>
+                                <div class="tag"><img src="ui-icon.png" alt="UI ICON"><span>#</span> UI/UX design</div>
+                                <div class="tag"><img src="python-icon.webp" alt="Python ICON"><span>#</span> Python
+                                </div>
+                                <div class="tag"><img src="html-icon.webp" alt="HTML ICON"><span>#</span> HTML</div>
+                                <div class="tag"><img src="React-icon.png" alt="REACT ICON"><span>#</span> React</div>
+                                <div class="tag"><img src="typescript-programming-language-icon.webp"
+                                        alt="Typescript ICON"><span>#</span> Typescript</div>
+                                <!-- duplicated content -->
+                                <div class="tag"><img src="JS-icon.png" alt="JS ICON"><span>#</span> JavaScript</div>
+                                <div class="tag"><img src="ui-icon.png" alt="UI ICON"><span>#</span> UI/UX design</div>
+                                <div class="tag"><img src="python-icon.webp" alt="Python ICON"><span>#</span> Python
+                                </div>
+                                <div class="tag"><img src="html-icon.webp" alt="HTML ICON"><span>#</span> HTML</div>
+                                <div class="tag"><img src="React-icon.png" alt="REACT ICON"><span>#</span> React</div>
+                                <div class="tag"><img src="typescript-programming-language-icon.webp"
+                                        alt="Typescript ICON"><span>#</span> Typescript</div>
+
+                            </div>
+                        </div>
+                        <div class="loop-slider" style="--duration:29260ms; --direction:reverse;">
+                            <div class="inner">
+                                <div class="tag"><img src="asm-icon.png" alt="ASSEMBLY ICON"><span>#</span> Assembly
+                                </div>
+                                <div class="tag"><img src="c-logo.png" alt="C ICON"><span>#</span> C</div>
+                                <div class="tag"><img src="cpp_logo.png" alt="C++ ICON"><span>#</span> C++</div>
+                                <div class="tag"><img src="java-icon.png" alt="JAVA ICON"><span>#</span> JAVA</div>
+                                <div class="tag"><img src="sql-icon.png" alt="SQL ICON"><span>#</span> SQL</div>
+                                <div class="tag"><img src="mongodb.svg" alt="MONGO ICON"><span>#</span> MongoDB</div>
+                                <div class="tag"><img src="CompTIA-Security-plus.jpg" alt="secuity + "><span>#</span>
+                                    Security + </div>
+                                <!-- duplicated content -->
+                                <div class="tag"><img src="asm-icon.png" alt="ASSEMBLY ICON"><span>#</span> Assembly
+                                </div>
+                                <div class="tag"><img src="c-logo.png" alt="C ICON"><span>#</span> C</div>
+                                <div class="tag"><img src="cpp_logo.png" alt="C++ ICON"><span>#</span> C++</div>
+                                <div class="tag"><img src="java-icon.png" alt="JAVA ICON"><span>#</span> JAVA</div>
+                                <div class="tag"><img src="sql-icon.png" alt="SQL ICON"><span>#</span> SQL</div>
+                                <div class="tag"><img src="mongodb.svg" alt="MONGO ICON"><span>#</span> MongoDB</div>
+                                <div class="tag"><img src="CompTIA-Security-plus.jpg" alt="secuity + "><span>#</span>
+                                    Security + </div>
+                            </div>
+                        </div>
+                        <div class="fade"></div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col">
+                            <h2>Computational Biologist Intern</h2>
+                            <em>University of Washington, Foege Hall, DeWitt Labs</em>
+                            <em>June 2025 - August 2025
+                            </em>
+                            <ul>
+                                <li>Scientific programming in Python</li>
+                                <li>Statistical and AI modeling.</li>
+                                <li>Project design and research</li>
+                                <li>High mathematics and lambda order functions</li>
+                                <li>Use of AlphaFold3 to predict and categorize anti-body folding.</li>
+                                <li>Published and presented  <a href="./af3_poster_dewitt.pdf">poster</a></li>
+                                <li>To Your right is my <a href="/moreMold.html">Mold Simulation</a>.</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <div id="canvas-container">
+                                <canvas width="40%" height="100%" id="myCanvas"></canvas>
+                            </div>
+                            <p style="font-size: 0.7em;">Click to interact</p>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <section>
+                    <div class="row">
+                        <!--
+                    <div class="col">
+                        <img src="screenshot.png" alt="Screenshot of app" width="400px">
+                    </div>
+                    -->
+                        <div class="col">
+                            <div style="margin-right: 10px" id="canvas-roseCanvas">
+                                <canvas width="50%" id="roseCanvas"></canvas>
+                            </div>
+                            <p style="font-size: 0.7em;">Hover to interact</p>
+                        </div>
+                        <div class="col">
+                            <h2>Automation Research Intern</h2>
+                            <em>Real Frequency, Spokane</em>
+                            <em>January 2024 - August 2024</em>
+                            <ul>
+                                <li>Saved business Owners over 500$ a year</li>
+                                <li>Software Development in Java</li>
+                                <li>Designed frontend and backend software, explored relevant projects and technologies
+                                    to find the
+                                    best implementation. </li>
+                                <li>Coordinated multiple agile cycles of development, worked closely with client to
+                                    ensure product
+                                    success.</li>
+                                <li>Earned reputation for being an active voice and organizer in team project,
+                                    collaborating with
+                                    C3’s to develop a usable and efficient desktop application. </li>
+                                <li>To your left is a rose simulation. It demonstrates the applications of sin and cos.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col">
+                            <h2>Research Assistant</h2>
+                            <em>Gonzaga University, Daniel Olivares</em>
+                            <em>September 2024 - Current</em>
+
+                            <ul>
+                                <li>Research in UI/UX, AI, and Education</li>
+                                <li>Software Development in Typescript, Javascript, HTML, CSS</li>
+                                <li>Develop backend environment in NodeJS</li>
+                                <li>CI/CD technologies and developments</li>
+                                <li>Development of NodeJS backend</li>
+                                <li>Presented findings at CIRC 2025 <a style="color: gray;"
+                                        href="/SIRC2025Poster.pdf">poster_link</a></li>
+                                        <li>To your right is <a href="/sorting.html"> visual representation of bubble sort.</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col">
+                            <div style="margin-right: 10px" id="sorting_canvas_parent">
+                            </div>
+                            <p style="font-size: 0.7em;">Hover to interact</p>
+                        </div>
+                    </div>
+
+    </div>
+    </div>
+    </section>
+
+    <section>
+        <div>
+
+        </div>
+    </section>
+    
+    <section id="Education-and-Qualifications-Div">
+        <h2 id="Education-and-Qualifications"><u>Education and Qualifications</u></h2>
+      
+        <!--acfadsva-->
+        
+
+
+        <!--Start of Specific -->
+        <tr>
+            <!--Adds a none bullet point, only  have two, so will write inline-->
+            <!--Adds a none bullet point, only  have two, so will write inline-->
+            <td colspan="3" style="list-style-type: none">
+                <section>
+                    <div class="row">
+                        <div class="col">
+                            <img src="Gonzaga_2025_rs.png" width="450" alt="Image of Gonzaga University">
+                        </div>
+                        <div class="col">
+                            <h2>Gonzaga University</h2>
+                            <p><em>B.S. Computer Science</em></p>
+                            <p><em>Start year: 2022 Graduation Year: 2026</em></p>
+                            <p>
+                                I have enjoyed studying computer science, and I have learned a lot about myself. College
+                                has given me the opportunity to learn new skills.
+                                I joined multiple school clubs while in college, and got to lead one of those school
+                                clubs.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </td>
+        </tr>
+        <!-- end of specific-->
+        </table>
+          <div class="row">
+            <div class="col">
+                <h2 data-text="COMPTIA Security+ " class="glitchText">COMPTIA Security+ </h2>
+                <p><em>February 2025</em></p>
+                <p>
+                    During the summer of 2024, and a little bit during school I studied for the COMPTIA Security+ exam
+                    This was an interest of my own, and I enjoyed learning about this topic a lot.
+                    This certification took a lot of work and hard studying, and I am proud of have completed it
+                </p>
+            </div>
+            <div class="col">
+                <img src="CompTIA-Security-plus.jpg" alt="COMPTIA logo" width="200">
+            </div>
+        </div>
+    </section>
+    <!--
+    <section>
+        <h2 id="Education-and-Qualifications"><u>Projects</u></h2>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <h2>My PL compiler</h2>
+                <p>
+                    A JAVA like programming language, built entirely from scratch,
+                    which compiles to assembly like code.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <h2>Delta Green : Code Red</h2>
+                <p>
+                    A fan made extension of the popular tabletop DND like game, called "Code Red".
+                    This website features a free fully featured campaign, several fully formed missions that
+                    are ready to go out of the box.
+                </p>
+                <p>
+
+                    The website also features some mission reports from prior missions I have DM'ed for my players.
+
+                </p>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </section>
+   -->
+
+    <section>
+        <div class="row">
+            <div class="col">
+                <h2>Event Team Lead</h2>
+                <em> Issaquah Parks and Recreation, Pickering Barn</em>
+                <em>June 2022 - Ongoing seasonal
+                </em>
+                <p>
+                    I work during the summer and during school breaks. I work on various tasks around the barn.
+                    This is a part time job. I would often work with volunteers, some of whom I became close friends
+                    with.
+                    Oftentimes when there was a new volunteer they would pair them with me.
+                </p>
+            </div>
+            <div class="col">
+                <img src="marketImage.jpg" width="400">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>FRC Programming lead</h2>
+                <p><em>Team 2928 | Ballard High School 2019 - 2021</em></p>
+                <p>
+                    As the Programming Lead for FIRST Robotics Team 2928, I played a pivotal role in designing efficient
+                    and reliable machine code to power competitive robots, demonstrating technical expertise and
+                    precision. I took on a leadership position, educating and mentoring team members on programming
+                    concepts and best practices, fostering a collaborative and innovative environment. My work focused
+                    on crafting high-caliber Java code, ensuring our robots performed optimally in complex, high-stakes
+                    scenarios. This dedication and teamwork culminated in our participation at the robotics world
+                    championship, showcasing our skills and competing at the highest level of excellence.
+                </p>
+            </div>
+            <div class="col">
+                <img src="roboticsWithMe.jpg" alt="Image of Whole robotics team 2019" width="400">
+            </div>
+        </div>
+
+    </section>
+    </main>
+
+    </div>
+</body>
+
+<script>
+    const fadeElements = document.querySelectorAll('section');
+
+    console.log(fadeElements);
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Optional: stop observing once visible
+            }
+        });
+    }, {
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    });
+
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+</script>
+</html>
